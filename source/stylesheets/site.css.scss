@@ -20,7 +20,12 @@ $side-gutter-width: $gutter-width;
 
 body {
   font-family: $font-family;
-  color: $font-color; 
+  color: $font-color;
+  background: url('/images/background.png');
+  background-repeat: no-repeat;
+  background-position:left top;
+  padding-top: 120px;
+  margin: 0px;
 }
 
 a {
@@ -29,4 +34,18 @@ a {
 
 #main {
   padding: 50px;
+  float: right;
 }
+
+#nav{
+	margin: 10px;
+}
+
+#content{
+	margin: 10px;
+}
+
+ul{
+	margin-left:10px;
+}
+

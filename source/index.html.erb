@@ -1,11 +1,13 @@
 <% content_for :head do %>
-  <title>Presentation Title</title>  
+  <title>Ryan</title>  
 <% end %>
 
 
+<script type="text/javascript">
+  	$(document).ready(function(){
+  		var $canvas = $("#display-canvas");
+		frontPage($canvas);
+	});
+</script>
 
-<h2>Optimization of canvas Javascript application</h2>
-
-
-<a href="./SimpleStarfieldAlpha.html">Simple Starfield</a>
-<a href="./SimpleStarfieldNoAlpha.html">Simple Starfield - Fixed</a>
+<canvas id="display-canvas" height="300" width="300" />
