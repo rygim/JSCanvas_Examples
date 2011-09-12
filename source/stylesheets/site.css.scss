@@ -24,7 +24,6 @@ body {
   background: url('/images/background.png');
   background-repeat: no-repeat;
   background-position:left top;
-  padding-top: 120px;
   margin: 0px;
 }
 
@@ -47,5 +46,12 @@ a {
 
 ul{
 	margin-left:10px;
+}
+
+#front-page-canvas{
+	margin: 0px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
 }
 

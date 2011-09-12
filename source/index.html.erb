@@ -2,12 +2,13 @@
   <title>Ryan</title>  
 <% end %>
 
+<%= javascript_include_tag "frontPage/frontPage" %>
 
 <script type="text/javascript">
   	$(document).ready(function(){
-  		var $canvas = $("#display-canvas");
+  		var $canvas = $("#front-page-canvas");
 		frontPage($canvas);
 	});
 </script>
 
-<canvas id="display-canvas" height="300" width="300" />
+<canvas id="front-page-canvas" height="300" width="300" />

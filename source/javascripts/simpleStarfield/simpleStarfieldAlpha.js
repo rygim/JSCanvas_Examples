@@ -1,60 +1,64 @@
 
-var star = function(x, y, vy, alpha) {
-	var star = {
-		x: x,
-		y: y, 
-		vy: vy,
-		alpha: alpha
-	}
+var newStar = function(ctx) {
+	var x = ctx.canvas.width / 2,
+		y = ctx.canvas.height / 2,
+		radius = Math.random(),
+		alpha = Math.random(),
+		direction = Math.random() * Math.PI * 2,
+		speed = Math.random() / 5;
 	
-	return star;
+	return { x:x, y:y, radius:radius, alpha:alpha, direction:direction, speed:speed };
 };
 
-var initStars = function(ctx, numStars){
-	var stars = [];
-	
-	for (var i = 0; i < numStars; i++){
-		var startX = Math.random() * ctx.canvas.width;
-		var startY = Math.random() * ctx.canvas.height;
-		var vy = Math.random() * 10;
-		var alpha = Math.random();
-		
-		stars.push(star(startX, startY, vy, alpha));
+var drawStars = function(stars, ctx) {
+	for(var i = 0; i < stars.length; i++){
+		ctx.beginPath();
+		ctx.fillStyle = "rgba(255, 255, 255, " + stars[i].alpha + ")";
+		ctx.arc(stars[i].x, stars[i].y, stars[i].radius, 0, Math.PI * 2, true);
+		ctx.closePath();
+		ctx.fill();
 	}
-	
-	return stars;
+};
+
+var updateStars = function(stars, ctx) {
+	for (var i = 0; i < stars.length; i++){
+		stars[i].y += Math.sin(stars[i].direction) * stars[i].speed;
+		stars[i].x += Math.cos(stars[i].direction) * stars[i].speed;
+		stars[i].speed += 0.04;
+		stars[i].radius += 0.02;
+		
+		if (stars[i].y > ctx.canvas.height || stars[i].x > ctx.canvas.width ||
+			stars[i].y < 0 || stars[i].x < 0){
+			delete stars[i];	
+			stars[i] = newStar(ctx);
+		}
+	}
 }
 
+var drawBackground = function(ctx){
+	ctx.fillStyle = "rgb(0, 0, 0)";
+	ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+};
+
 var simpleStarfield = function($canvas, numStars){
-	
+
 	//Get the drawing context
 	var ctx = $canvas[0].getContext("2d");
 	
 	//initialize the stars	
-	var stars = initStars(ctx, numStars);
+	var stars = [];
 
 	var draw = function(){
-		ctx.fillStyle = "rgba(0, 0, 0, 1)";
-		ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-		
-		for (var i = 0; i < stars.length; i++)
-		{
-			ctx.beginPath();
-			ctx.fillStyle = "rgba(255, 255, 255, " + stars[i].alpha + ")";
-			ctx.arc(stars[i].x, stars[i].y, 1, 0, Math.PI * 2, true);
-			ctx.closePath();
-			ctx.fill();
-		}
+		drawBackground(ctx);
+		drawStars(stars, ctx);
 	};
 
 	var update = function(){
-		for (var i = 0; i < stars.length; i++){
-			stars[i].y += stars[i].vy;
-			
-			if (stars[i].y > ctx.canvas.height){
-				stars[i].y = 0;
-			}
-		}	
+		if (stars.length < numStars){
+			stars.push(newStar(ctx));
+		}
+		
+		updateStars(stars, ctx);
 	};
 	
 	
