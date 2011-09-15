@@ -1,0 +1,26 @@
+<% content_for :head do %>
+  <title>Optimizing HTML5 Canvas Applications : HTML5 Canvas Introduction</title>
+  <%= javascript_include_tag "presentation" %>
+
+  <script type="text/javascript">       
+          bindPresentationActions("<%= url_for(:action => 'index') %>", 
+          [], 
+          "<%= url_for(:action => 'canvasApi') %>");
+  </script>
+<% end %>
+
+  <div class="sectionHeader">
+    HTML5 Canvas + Javascript Introduction
+  </div>
+  
+  <ul>
+    <li>The canvas is a new HTML5 element</li>
+    <li>The canvas API is accessed through javascript through the DOM</li>
+    <li>A canvas gives low-level access to a surface on which to draw on</li>
+    <li>Initially introduced by Apple for use inside the Mac OSX Webkit component</li>
+  </ul>
+
+  
+  <div>Why?</div>
+  
+  <div>Browser Support</div>

@@ -1,0 +1,16 @@
+<% content_for :head do %>
+  <title>Example 1</title>
+  	<%= javascript_include_tag "simpleStarfield/simpleStarfieldAlpha" %>
+  	
+  <script type="text/javascript">
+  	$(document).ready(function(){
+  		var $canvas = $("#example1-canvas");
+  		var numStars = 50;
+  		
+  		simpleStarfield($canvas, numStars);
+  	});
+  </script>
+  
+<% end%>
+
+Duh

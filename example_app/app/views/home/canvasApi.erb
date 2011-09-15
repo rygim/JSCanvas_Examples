@@ -1,0 +1,61 @@
+<% content_for :head do %>
+  <title>Optimizing HTML5 Canvas Applications : HTML5 Canvas API</title>
+  <%= javascript_include_tag "presentation" %>
+
+  <script type="text/javascript">       
+          bindPresentationActions("<%= url_for(:action => 'canvasIntro') %>", 
+          [], 
+          "<%= url_for(:action => 'canvasApi') %>");
+  </script>
+<% end %>
+
+  <div class="sectionHeader">
+    HTML5 Canvas API
+  </div>
+  
+  <ul>
+    <li>
+      To get access to the canvas API in the javascript DOM, you must call as follows:
+      <div class="codeWrapper">    
+        <code class="prettyprint">
+          <br />
+          var canvas = document.getElementById('canvas-id');
+          <br />
+          var context = canvas.getContext('2d');
+          <br />
+          <br />
+          &lt;canvas id='canvas-id' /&gt;
+        </code>
+      </div>
+    </li>
+  
+</ul>
+
+<br /><br />
+<div class="subheader">Basic drawing</div>
+<ul>
+  <li>context.arc(0, 0, 0, 0);</li>
+  <li>context.rect(0, 0, 0, 0);</li>
+  <li>context.fillRect(0, 0, 0, 0);</li>
+  <li>context.quadraticCurveTo(0, 0, 0, 0);</li>
+</ul>
+
+<br /><br />
+<div class="subheader">A little more interesting drawing</div>
+<ul>
+  <li>context.createLinearGradient(0, 0, 0, 0);</li>
+  <li>context.createLinearGradient(0, 0, 0, 0);</li>
+  <li>context.rotate(0);</li>
+  <li>context.save(0);</li>
+  <li>context.restore(0);</li>
+</ul>
+  
+<br /><br />
+<div class="subheader">Even more interesting</div>
+<ul>
+  <li>context.drawSystemFocusRing(0, 0, 0, 0);</li>
+  <li>context.globalAlpha = 0.5;</li>
+  <li>context.createImageData(0, 0);</li>
+  <li>context.putImageData(0, 0);</li>
+</ul>
+    
