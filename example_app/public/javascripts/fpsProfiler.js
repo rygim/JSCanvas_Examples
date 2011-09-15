@@ -1,5 +1,11 @@
 var fpsProfiler = function(){
-
+    
+    var data = {
+        fps: 0,
+        averageUpdateTime: 0,
+        averageDrawTime: 0
+    };
+    
     var profiler = {
         
         isStarted: false,
@@ -84,8 +90,28 @@ var fpsProfiler = function(){
             var updateTime = (new Date()).getTime() - profiler.lastUpdateStartTime.getTime();
                        
             profiler.averageUpdateTime = newAvgUpdateTime + updateTime / profiler.updateSamples;
-        }        
+        },
+
+        defaultDraw: function(ctx){
+            ctx.fillStyle = "yellow";
+            ctx.font = "bold 15px sans-serif";
+            ctx.fillText("FPS: " + data.fps, 5, 25);
+            ctx.fillText("Avg. update time: " + data.averageUpdateTime, 5, 45);
+            ctx.fillText("Avg. draw time: " + data.averageDrawTime, 5, 65);
+            var totalTime = data.averageDrawTime + data.averageUpdateTime;
+            var possibleFps = 1000 / totalTime;
+            ctx.fillText("Avg. total time: " + totalTime, 5, 85);
+            ctx.fillText("Ideal FPS: " + possibleFps, 5, 105);
+        }
     };
+        
+    var updateFpsData = function(fps, avgUpdateTime, avgDrawTime){
+        data.fps = fps;
+        data.averageDrawTime = avgDrawTime;
+        data.averageUpdateTime = avgUpdateTime;
+    };
+     
+    profiler.addFpsCalculationHandler(updateFpsData);
 
     return profiler;
 };

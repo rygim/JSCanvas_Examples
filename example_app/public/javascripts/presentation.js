@@ -1,34 +1,3 @@
-var bindPresentationActions = function(backLocation, actions, nextLocation){
-    
-    var index = 0;
-    
-    $(document).bind('keyup', function(event){
-        if (event.which === 37 && index === 0 && backLocation !== undefined){
-            window.location = backLocation + "?goback=true";
-        }
-        else if (event.which === 37 && index === 0 && backLocation === undefined){
-            return;
-        }
-        else if (event.which === 37){
-            actions[index-1].undo();
-            index--;
-        }
-        else if (event.which === 39 && (index == actions.length || actions.length == 0)){
-            window.location = nextLocation;
-        }
-        else if (event.which === 39){
-            actions[index].todo();
-            index++;
-        }
-    });    
-    
-    if (getUrlVars()["goback"] === "true"){
-       for(index = 0; index < actions.length; index++){
-           actions[index].todo();
-       } 
-    }
-};
-
 var newAction = function(todo, undo){
     var action = {
         todo: todo,
@@ -49,4 +18,47 @@ var getUrlVars = function()
         vars[hash[0]] = hash[1];
     }
     return vars;
+};
+
+var inputHasFocus = function(){
+  return $("input:focus").length > 0 || $("canvas:focus").length > 0;  
+};
+
+var bindPresentationActions = function(backLocation, actions, nextLocation){
+    
+    var index = 0;
+    
+    $(document).bind('keyup', function(event){
+        
+        if (inputHasFocus()){
+            return;
+        }
+        
+        var isNext = event.which === 37;
+        var isBack = event.which === 39 || event.which === 32;
+        
+        if (isNext && index === 0 && backLocation !== undefined){
+            window.location = backLocation + "?goback=true";
+        }
+        else if (isNext && index === 0 && backLocation === undefined){
+            return;
+        }
+        else if (isNext){
+            actions[index-1].undo();
+            index--;
+        }
+        else if (isBack && (index == actions.length || actions.length == 0)){
+            window.location = nextLocation;
+        }
+        else if (isBack){
+            actions[index].todo();
+            index++;
+        }
+    });    
+    
+    if (getUrlVars()["goback"] === "true"){
+       for(index = 0; index < actions.length; index++){
+           actions[index].todo();
+       } 
+    }
 };

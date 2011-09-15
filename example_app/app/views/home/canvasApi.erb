@@ -1,11 +1,8 @@
 <% content_for :head do %>
-  <title>Optimizing HTML5 Canvas Applications : HTML5 Canvas API</title>
-  <%= javascript_include_tag "presentation" %>
-
   <script type="text/javascript">       
           bindPresentationActions("<%= url_for(:action => 'canvasIntro') %>", 
           [], 
-          "<%= url_for(:action => 'canvasApi') %>");
+          "<%= url_for(:action => 'graphicsIntro') %>");
   </script>
 <% end %>
 

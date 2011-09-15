@@ -131,16 +131,6 @@ var drawFpsData = function(data, ctx){
     ctx.fillText("Ideal FPS: " + possibleFps, 5, 105);
 };
 
-var fpsData = function(){
-    var data = {
-        fps: 0,
-        averageUpdateTime: 0,
-        averageDrawTime: 0
-    };
-    
-    return data;
-};
-
 var canvasDimensionData = function(){
   var dimData = {
       height: 0,
@@ -153,7 +143,6 @@ var canvasDimensionData = function(){
 var frontPage = function($canvas, showFpsData){
         var profiler = fpsProfiler();
 	var ctx = $canvas[0].getContext("2d");
-        var data = fpsData();
         var dimensionData = canvasDimensionData();
 	setCanvasToPageWidth($canvas, dimensionData);
 	
@@ -175,6 +164,7 @@ var frontPage = function($canvas, showFpsData){
             if (showFpsData()){
                 drawFpsData(data, ctx);
             }
+            profiler.defaultDraw(ctx);
 	};
 	
 	var update = function(){
@@ -182,15 +172,7 @@ var frontPage = function($canvas, showFpsData){
             updateClouds(clouds, ctx);
             updateTossedItems(tossedItems, ctx);
 	};
-        
-        var updateFpsData = function(fps, avgUpdateTime, avgDrawTime){
-            data.fps = fps;
-            data.averageDrawTime = avgDrawTime;
-            data.averageUpdateTime = avgUpdateTime;
-        };
-	
-        profiler.addFpsCalculationHandler(updateFpsData);
-        
+
         profiler.start();
         
 	setInterval(function(){

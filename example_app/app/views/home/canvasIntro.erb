@@ -1,5 +1,5 @@
 <% content_for :head do %>
-  <title>Optimizing HTML5 Canvas Applications : HTML5 Canvas Introduction</title>
+  <title>Optimizing HTML5 Canvas Applications : </title>
   <%= javascript_include_tag "presentation" %>
 
   <script type="text/javascript">       
@@ -7,6 +7,10 @@
           [], 
           "<%= url_for(:action => 'canvasApi') %>");
   </script>
+<% end %>
+  
+<% content_for :title do %>  
+  HTML5 Canvas Introduction
 <% end %>
 
   <div class="sectionHeader">

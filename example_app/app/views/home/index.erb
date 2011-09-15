@@ -1,7 +1,5 @@
 <% content_for :head do %>
-  <title>Optimizing HTML5 Canvas Applications</title>
-  <%= javascript_include_tag "presentation" %>
-  <%= javascript_include_tag "fpsProfiler" %>
+  
   <%= javascript_include_tag "frontPage/frontPage" %>
   <script type="text/javascript">
         var showData = false;
@@ -25,6 +23,10 @@
                   )], 
         "<%= url_for(:action => 'canvasIntro') %>");
 </script>
+<% end %>
+
+<% content_for :title do %>
+By Ryan Gimmy
 <% end %>
 
 <canvas id="front-page-canvas" height="300" width="300" />
