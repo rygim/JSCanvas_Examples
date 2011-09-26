@@ -41,7 +41,7 @@ var fpsProfiler = function(){
         
         updateHandlers: function(){
             if (profiler.isStarted){
-                var fps = profiler.updateSamples;
+                var fps = profiler.drawSamples;
 
                 for (var i = 0; i < profiler.handlers.length; i++){
                     profiler.handlers[i](fps, profiler.averageUpdateTime, profiler.averageDrawTime);

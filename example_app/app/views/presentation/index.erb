@@ -1,0 +1,32 @@
+<% content_for :head do %>
+  
+  <%= javascript_include_tag "frontPage/frontPage" %>
+  <script type="text/javascript">
+        var showData = false;
+  
+        var showFpsData = function(){
+          return showData;
+        };
+  
+  	$(document).ready(function(){
+  		var $canvas = $("#front-page-canvas");
+		frontPage($canvas, showFpsData);
+	});
+        
+        bindPresentationActions(undefined, 
+        [newAction(function(){
+                      showData = true;
+                    },
+                  function(){
+                      showData = false;
+                    }
+                  )], 
+        "<%= url_for(:action => 'canvasIntro') %>");
+</script>
+<% end %>
+
+<% content_for :title do %>
+By Ryan Gimmy
+<% end %>
+
+<canvas id="front-page-canvas" height="300" width="300" />

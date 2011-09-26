@@ -1,0 +1,45 @@
+<% content_for :head do %>
+  <%= javascript_include_tag "simpleStarfield/simpleStarfieldAlpha" %>
+  <script type="text/javascript">       
+          bindPresentationActions("<%= url_for(:action => 'starfieldIntro') %>", 
+          [], 
+          "<%= url_for(:action => 'starfieldIntro') %>");
+          
+          var numStars = function(){
+            return $("#num-stars").val();
+          };
+          
+          var incrementBy = function(){
+            return $("#increment-stars").val();
+          };
+          
+          var drawPlot = function(data){
+            $.plot($("#fps-stars"), [{data:data, points: {show : true}}]);
+          };
+          
+          $(document).ready(function(){
+            var graphData = [];
+            var $canvas = $("#starfield-canvas");
+            
+            var addDataPoint = function(fps, numStars){
+              var newData = [numStars, fps];
+              graphData.push(newData);
+              drawPlot(graphData);
+            };
+            
+            simpleStarfield($canvas, numStars, incrementBy, addDataPoint);
+          });
+  </script>
+<% end %>
+
+<% content_for :title do %>
+  Starfield
+<% end %>
+  <div />
+<canvas id="starfield-canvas" height="500" width="500"></canvas>
+<form>
+    <label for="num-stars">Number of stars</label><input type="text" id="num-stars" value="50"></input><br />
+    <label for="num-stars">Increment By</label><input type="text" id="increment-stars" value="1"></input>
+</form>
+
+<div id="fps-stars" style="width:400px; height:400px;"/>

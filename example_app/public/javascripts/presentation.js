@@ -7,6 +7,26 @@ var newAction = function(todo, undo){
     return action;
 };
 
+var showHideAction = function($selector){
+    return newAction(function(){
+        $selector.removeClass("hidden");
+    }, function(){
+        $selector.addClass("hidden");
+    });
+};
+
+var showHideAndGotoAction = function($selector, gotoStr, fromStr){
+    var action1 = showHideAction($selector);
+    return newAction(function(){
+            action1.todo();
+            window.location.href = gotoStr;
+        },
+        function(){
+            action1.undo();
+            window.location.href = fromStr;
+        });    
+};
+
 var getUrlVars = function()
 {
     var vars = [], hash;

@@ -1,0 +1,11 @@
+<% content_for :head do %>
+  <script type="text/javascript">       
+          bindPresentationActions("<%= url_for(:action => 'graphicsIntro') %>", 
+          [], 
+          "<%= url_for(:action => 'starfield') %>");
+  </script>
+<% end %>
+
+<% content_for :title do %>
+  Starfield Introduction
+<% end %>

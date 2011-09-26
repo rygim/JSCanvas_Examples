@@ -1,0 +1,133 @@
+<% content_for :head do %>
+  <script type="text/javascript"> 
+          var randomColor = function(){
+            return "rgb(" + (Math.floor(Math.random() * 255)) + "," + (Math.floor(Math.random() * 255)) + "," + (Math.floor(Math.random() * 255)) + ")";
+          };
+          
+          var startCanvas = function($canvas, canvasDraw){
+            var ctx = $canvas[0].getContext("2d");
+            ctx.fillStyle = "black";
+            ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+            setInterval(function(){ canvasDraw(ctx); }, 1000);
+          };
+          
+          var startCanvasAction = function($canvasSelector, canvasDraw){
+            return newAction(function(){
+                    startCanvas($canvasSelector, canvasDraw);
+                    $canvasSelector.removeClass("hidden");
+                }, function() {
+                    $canvasSelector.addClass("hidden");
+                });
+          };
+          
+          var arcCanvasDraw = function(ctx){
+              ctx.beginPath();
+              ctx.lineWidth = Math.random() * 5;
+              ctx.strokeStyle = randomColor();
+              ctx.arc(ctx.canvas.width * Math.random(), 
+                      ctx.canvas.height * Math.random(), 
+                      50 * Math.random(), 
+                      2 * Math.PI * Math.random(), 
+                      2 * Math.PI * Math.random(), 
+                      false);
+              ctx.stroke();
+          };
+          
+          var rectCanvasDraw = function(ctx){
+              ctx.beginPath();
+              ctx.lineWidth = Math.random() * 5;
+              ctx.strokeStyle = randomColor();
+              ctx.fillStyle = randomColor();
+              var x = ctx.canvas.width * Math.random(),
+                  y = ctx.canvas.height * Math.random(),
+                  width = Math.random() * (ctx.canvas.width - x),
+                  height = Math.random() * (ctx.canvas.height - y);
+              ctx.fillRect(x, y, width, height);
+              ctx.stroke();            
+          };
+          
+          var imageDraw = function(ctx){
+            var img = new Image();
+            img.src = "/images/chris_dagostino.png";
+            var x = Math.random() * (ctx.canvas.width - img.width),
+                y = Math.random() * (ctx.canvas.height - img.height);
+            ctx.drawImage(img, x, y);
+          };
+          
+          var textDraw = function(ctx){
+            ctx.font = Math.floor(Math.random() * 20) + "pt Calibri";
+            ctx.fillStyle = randomColor(); // text color
+            ctx.fillText("Hello World!", Math.random() * ctx.canvas.width / 2, Math.random() * ctx.canvas.height);
+          };
+    
+          $(document).ready(function(){
+            var $arcCanvas = $("#canvas-arc");
+            var $rectCanvas = $("#canvas-rect");
+            var $textCanvas = $("#canvas-text");
+            var $imageCanvas = $("#canvas-image");
+            
+            bindPresentationActions("<%= url_for(:action => 'canvasApi') %>", 
+                [startCanvasAction($arcCanvas, arcCanvasDraw),
+                showHideAndGotoAction($("#draw1"), "#rect", "#arc"),
+                startCanvasAction($rectCanvas, rectCanvasDraw),
+                showHideAndGotoAction($("#draw2"), "#text", "#rect"),
+                startCanvasAction($textCanvas, textDraw),
+                showHideAndGotoAction($("#draw3"), "#img", "#text"),
+                startCanvasAction($imageCanvas, imageDraw)],
+            "<%= url_for(:action => 'canvasApi2') %>");
+          });
+  </script>
+<% end %>
+
+<% content_for :title do %>  
+  HTML5 Canvas API
+<% end %>
+  
+  <div class="header">Basic drawing</div>
+  <div class="info">
+    <ul>
+      <li>
+        <code class="prettyprint">
+          <a name="arc">context.arc(centerX, centerY, radius, startingAngle, endingAngle, antiClockwise);</a>
+        </code>
+        <table>
+          <tr>
+            <td>
+              <canvas class="hidden" id="canvas-arc" width="200" height="200"></canvas>          
+            </td>
+            <td>
+              <div id="canvas-rect-stress" class="hidden">(Do stress test)</div>
+            </td>
+          </tr>
+        </table>
+      </li>
+      <li id="draw1" class="hidden">
+        <code class="prettyprint"><a name="rect">context.rect(0, 0, 0, 0);</a></code>
+        <table><tr>
+            <td>
+          <canvas id="canvas-rect" width="200" height="200"></canvas>          
+          </td>
+          <td><div id="canvas-rect-stress" class="hidden">(Do stress test)</div></td>
+          </tr></table>
+      </li>
+      <li id="draw2" class="hidden">
+        <code class="prettyprint"><a name="text">context.drawText(i, 0, 0, 0);</a></code>
+                <table><tr>
+                    <td>
+          <canvas id="canvas-text" width="200" height="200"></canvas>          
+          </td>
+          <td><div id="canvas-rect-stress" class="hidden">(Do stress test)</div></td>
+          </tr></table>
+      </li>
+      <li id="draw3" class="hidden">
+        <code class="prettyprint"><a name="img">context.drawImage(text, x, y);</a></code>
+                <table><tr>
+                    <td>
+          <canvas id="canvas-image" width="200" height="200"></canvas>          
+                  </td>
+          <td><div id="canvas-rect-stress" class="hidden">(Do stress test)</div></td>
+          </tr></table>
+      </li>
+    </ul>
+  </div>
+  <br /><br /><br /><br /><br /><br />

@@ -11,7 +11,9 @@
     <%= javascript_include_tag "prettify" %>
     <%= javascript_include_tag "presentation" %>
     <%= javascript_include_tag "fpsProfiler" %>
+    <%= javascript_include_tag "requestAnimationFrameShim" %> 
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+   <%= javascript_include_tag "jquery.flot" %>
         <script type="text/javascript">
           $(document).ready(function(){
             prettyPrint();
@@ -21,8 +23,10 @@
   </head>
   <body>
     <div id="content">
-      <%= yield :title %>
-      
+      <div class="pageTitle">
+        <%= yield :title %>
+      </div>
+        
       <%= yield %>
     </div>
 

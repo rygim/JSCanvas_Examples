@@ -1,0 +1,22 @@
+<% content_for :head do %>
+  <script type="text/javascript">       
+          bindPresentationActions("<%= url_for(:action => 'canvasApi1') %>", 
+          [], 
+          "<%= url_for(:action => 'canvasApi3') %>");
+  </script>
+<% end %>
+
+<% content_for :title do %>  
+  HTML5 Canvas API
+<% end %>
+  
+ <div class="header">A little more interesting drawing</div>
+ <div class="info">
+<ul>
+  <li>context.createLinearGradient(0, 0, 0, 0);</li>
+  <li>context.rotate(0);</li>
+  <li>context.save(0);</li>
+  <li>context.restore(0);</li>
+</ul>
+   </div>
+  

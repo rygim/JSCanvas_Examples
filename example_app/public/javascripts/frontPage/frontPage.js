@@ -162,9 +162,8 @@ var frontPage = function($canvas, showFpsData){
             drawTossedItems(tossedItems, ctx);
             drawText($canvas, ctx);
             if (showFpsData()){
-                drawFpsData(data, ctx);
+                profiler.defaultDraw(ctx);
             }
-            profiler.defaultDraw(ctx);
 	};
 	
 	var update = function(){

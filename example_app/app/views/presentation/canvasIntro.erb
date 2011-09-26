@@ -1,0 +1,33 @@
+<% content_for :head do %>
+  <script type="text/javascript">       
+          bindPresentationActions("<%= url_for(:action => 'index') %>", 
+          [], 
+          "<%= url_for(:action => 'canvasApi') %>");
+  </script>
+<% end %>
+  
+<% content_for :title do %>  
+  Quick HTML5 Canvas Introduction
+<% end %>
+
+  <a name="top"><div class="header">What is canvas?</div></a>
+  <div class="info">
+    <ul>
+      <li>The canvas is a new HTML5 element</li>
+      <li>The canvas API is accessed through javascript through the DOM</li>
+      <li>A canvas gives low-level access to a surface on which to draw on</li>
+      <li>Initially introduced by Apple for use inside the Mac OSX Webkit component</li>
+    </ul>
+  </div>
+
+  <div class="header">Why should I (or you) care?</div>
+  <div class="info">
+    <ul><li>(Add another)</li>
+    <li>Drawing is different in many places, but the fundamentals remain the same</li>
+    <li>Support for canvas is increasing, even on mobile devices</li></ul>
+  </div>
+  
+  <a name="support"><div class="header">Who supports canvas?</div></a>
+  <div class="info">
+      Insert graphics
+  </div>

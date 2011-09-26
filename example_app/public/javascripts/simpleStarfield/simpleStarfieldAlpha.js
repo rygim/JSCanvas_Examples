@@ -19,7 +19,9 @@ var newBgStar = function(ctx) {
 };
 
 var drawStar = function(star, ctx){
-    ctx.fillStyle = "rgba(255, 255, 255," + star.alpha + ")";
+    var rgb = Math.floor(255 * star.alpha);
+    //ctx.fillStyle = "rgba(255, 255, 255," + star.alpha + ")";
+    ctx.fillStyle = "rgb(" + rgb + ", " + rgb + ", " + rgb + ")";
     ctx.beginPath();
     ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2, true);
     ctx.closePath();
@@ -76,7 +78,7 @@ var drawStats = function(profiler, numActualStars, ctx){
     ctx.fillText("Number of stars: " + numActualStars, 5, 125);
 };
 
-var simpleStarfield = function($canvas, numStars, incrementBy){
+var simpleStarfield = function($canvas, numStars, incrementBy, updateGraph){
 
         var profiler = fpsProfiler();
 	//Get the drawing context
@@ -104,6 +106,12 @@ var simpleStarfield = function($canvas, numStars, incrementBy){
 		
 		updateStars(stars, curNumStars, ctx);
 	};
+        
+        profiler.addFpsCalculationHandler(function(fps, avgUpdateTime, avgDrawTime){
+            updateGraph(fps, stars.length);
+        });
+        
+        profiler.start();
 	
 	/*(var gameLoop1 = function(numLoops){
 		var time = 0;
@@ -115,7 +123,7 @@ var simpleStarfield = function($canvas, numStars, incrementBy){
 		}
 	}).call(this);*/
 	
-	(function(){
+	/*(function(){
 		setInterval(function(){
                     profiler.beginUpdate();
                     update();
@@ -125,8 +133,25 @@ var simpleStarfield = function($canvas, numStars, incrementBy){
                     profiler.endDraw();
 		}, 30);
 	}).call(this);	
+   
+        */
         
-        profiler.start();
+        var render = function(){
+            profiler.beginDraw();
+            draw();
+            profiler.endDraw();
+            requestAnimationFrame(render);
+        };
+        
+        (function(){
+		setInterval(function(){
+                    profiler.beginUpdate();
+                    update();
+                    profiler.endUpdate();
+		}, 30);
+	}).call(this); 
+        
+        render();
 };
 
 

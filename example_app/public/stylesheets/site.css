@@ -14,7 +14,9 @@ body{
 }
 
 #content{
-    margin-left: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 900px;
 }
 
 #content ul{
@@ -32,7 +34,7 @@ body{
     left: 0px;
 }
 
-.sectionHeader{
+.pageTitle{
     margin-top: 30px;
     font-size: 40px;
     margin-bottom: 10px;
@@ -46,8 +48,15 @@ body{
     margin-left:20px;
 }
 
-.subheader{
-    margin-top: 20px;
-    font-size: 30px;
-    margin-bottom: 10px;
+.header{
+    margin: 20px 0px 10px 35px;
+    font-size: 35px;
+}
+
+.info{
+    margin-left: 70px;
+}
+
+.hidden{
+    display:none;
 }

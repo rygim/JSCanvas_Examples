@@ -1,0 +1,23 @@
+<% content_for :head do %>
+  <script type="text/javascript">       
+          bindPresentationActions("<%= url_for(:action => 'canvasApi2') %>", 
+          [], 
+          "<%= url_for(:action => 'graphicsIntro') %>");
+  </script>
+<% end %>
+
+<% content_for :title do %>  
+  HTML5 Canvas API
+<% end %>
+  
+<div class="header">Even more interesting</div>
+<div class="info">
+<ul>
+  <li>context.drawSystemFocusRing(0, 0, 0, 0);</li>
+  <li>context.globalAlpha = 0.5;</li>
+  <li>context.createImageData(0, 0);</li>
+  <li>context.putImageData(0, 0);</li>
+</ul>
+  </div>
+    
+  
