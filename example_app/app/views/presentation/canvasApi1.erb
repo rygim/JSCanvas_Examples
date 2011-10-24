@@ -20,6 +20,12 @@
                 });
           };
           
+          var newImage = function(){
+            var img = new Image();
+            img.src = "/images/chris_dagostino.png";
+            return img;
+          };
+          
           var arcCanvasDraw = function(ctx){
               ctx.beginPath();
               ctx.lineWidth = Math.random() * 5;
@@ -47,8 +53,7 @@
           };
           
           var imageDraw = function(ctx){
-            var img = new Image();
-            img.src = "/images/chris_dagostino.png";
+            var img = newImage();
             var x = Math.random() * (ctx.canvas.width - img.width),
                 y = Math.random() * (ctx.canvas.height - img.height);
             ctx.drawImage(img, x, y);
@@ -59,12 +64,27 @@
             ctx.fillStyle = randomColor(); // text color
             ctx.fillText("Hello World!", Math.random() * ctx.canvas.width / 2, Math.random() * ctx.canvas.height);
           };
+          
+          var rotation = 0;
+          var rotationImage = newImage();
+          
+          var rotateDraw = function(ctx){
+            ctx.fillStyle = 'black';
+            ctx.fillRect(0, 0, ctx.canvas.height, ctx.canvas.width);
+            ctx.save();
+            ctx.rotate(Math.PI * rotation / 180);
+            ctx.translate(300, 300);
+            ctx.drawImage(rotationImage, 0, 0);
+            ctx.restore();
+            rotation += 10;
+          };
     
           $(document).ready(function(){
             var $arcCanvas = $("#canvas-arc");
             var $rectCanvas = $("#canvas-rect");
             var $textCanvas = $("#canvas-text");
             var $imageCanvas = $("#canvas-image");
+            var $rotateCanvas = $("#canvas-rotate");
             
             bindPresentationActions("<%= url_for(:action => 'canvasApi') %>", 
                 [startCanvasAction($arcCanvas, arcCanvasDraw),
@@ -73,7 +93,9 @@
                 showHideAndGotoAction($("#draw2"), "#text", "#rect"),
                 startCanvasAction($textCanvas, textDraw),
                 showHideAndGotoAction($("#draw3"), "#img", "#text"),
-                startCanvasAction($imageCanvas, imageDraw)],
+                startCanvasAction($imageCanvas, imageDraw),
+                showHideAndGotoAction($("#draw4"), "#rotate", "#img"),
+                startCanvasAction($rotateCanvas, rotateDraw)],
             "<%= url_for(:action => 'canvasApi2') %>");
           });
   </script>
@@ -126,6 +148,14 @@
           <canvas id="canvas-image" width="200" height="200"></canvas>          
                   </td>
           <td><div id="canvas-rect-stress" class="hidden">(Do stress test)</div></td>
+          </tr></table>
+      </li>
+      <li id="draw4" class="hidden">
+        <code class="prettyprint"><a name="rotate">context.rotate(text, x, y);</a></code>
+                <table><tr>
+                    <td>
+                      <canvas id="canvas-rotate" width="900" height="900"></canvas>          
+                  </td>
           </tr></table>
       </li>
     </ul>

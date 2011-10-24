@@ -132,9 +132,9 @@ var simpleStarfield = function($canvas, numStars, incrementBy, updateGraph){
                     draw();
                     profiler.endDraw();
 		}, 30);
-	}).call(this);	
+	}).call(this);	*/
    
-        */
+        
         
         var render = function(){
             profiler.beginDraw();

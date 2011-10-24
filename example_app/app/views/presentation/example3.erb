@@ -5,7 +5,7 @@
           "<%= url_for(:action => 'canvasApi1') %>");
   </script>
   <script type="text/javascript" src="http://localhost:7777/socket.io/socket.io.js"></script>
-  <script type="text/javascript">
+    <script type="text/javascript">
     $(document).ready(function(){
       var upcomingMessages = [];
       var upcomingDrawData = [];
@@ -19,7 +19,10 @@
       
       var handleChat = function(author, message){
         var msg = author + ": " + message;
-        upcomingMessages.push(msg);
+        upcomingMessages.unshift(msg);
+        if (upcomingMessages.length > 10){
+          upcomingMessages.pop();
+        }
       };
       
       var handleDraw = function(author, draw){
@@ -30,9 +33,10 @@
       
       $(document).keypress(function(event){
         var chat = $("#chat-input").val();
+        var author = $("#handle-input").val();
         if (event.which == 13 && chat !== ""){
           $("#chat-input").val("");
-          socket.emit('chat', { chat: chat, author: "rgimmy" });
+          socket.emit('chat', { chat: chat, author: author });
         }
       });
       
@@ -41,7 +45,7 @@
           handleChat(data.chats.messages[i].author, data.chats.messages[i].message);
         }
         
-        for(var i = 0; i < data.drawData.message.length; i++){
+        for(var i = 0; i < data.drawData.messages.length; i++){
           handleDraw(data.drawData.messages[i].author, data.drawData.messages[i].draw);
         }
       });
@@ -56,15 +60,20 @@
       
       var profiler = fpsProfiler();
       
+      var ctx = $("#canvas-app")[0].getContext("2d");
+      
       var update = function(){
         
       };
       
       var draw = function(){
-        var ctx = $("#canvas-app")[0].getContext("2d");
-        profiler.defaultDraw(ctx);
-        
-        ctx.fillText(msg, 20 , 20 * upcomingMessages.length);
+        ctx.fillStyle = 'black';
+        ctx.fillRect(0,0,ctx.canvas.width, ctx.canvas.height);
+        ////profiler.defaultDraw(ctx);
+        ctx.fillStyle = 'white';
+        for(var i = 0; i < upcomingMessages.length; i++){
+          ctx.fillText(upcomingMessages[i], 20 , 20 * i + 30);
+        }
       };
       
       var render = function(){
@@ -90,10 +99,10 @@
 <% end %>
   
   
-<canvas id="canvas-app" width="400" height="400"></canvas>
-
-  <label for="chat-input">Chat: </label><input type="text" id="chat-input" />
-
+<canvas id="canvas-app" width="800" height="400"></canvas>
+<br />
+<label for="chat-input">Chat: </label><input type="text" id="chat-input" />
+<label for="handle-input">Handle: </label><input type="text" value="rgimmy" id="handle-input" />
     
     
    
