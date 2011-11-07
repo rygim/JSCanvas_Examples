@@ -1,6 +1,6 @@
 var ryanServer = require("./ryanServer.js").ryanServer;  
 
-var port = 80;
+var port = 7777;
 
 try {
     ryanServer.listen(port);  

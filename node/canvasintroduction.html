@@ -1,0 +1,43 @@
+@(:title="Canvas Introduction")
+@(:header="Quick Canvas Introduction")
+<script type="text/javascript">
+    $(document).ready(function(){
+        bindPresentationActions("/introduction.html", [], "/tip1.html");
+    });
+</script>
+
+<h3>The canvas is accessed through javascript</h3>
+<pre class="prettyprint">
+    var ctx = document.getElementById("application-canvas");
+</pre>
+
+<h3>Interacting with the canvas: </h3>
+
+<table>
+    <tr>
+        <td>
+            <pre class="prettyprint">
+                ctx.drawImage
+            </pre>
+        </td>
+        <td>
+            <canvas id="draw-image-canvas" width="200" height="200" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <pre class="prettyprint">
+                ctx.fillText
+            </pre>
+        </td>
+        <td>
+            
+        </td>
+    </tr>
+    <tr><td>ctx.drawArc</td><td></td></tr>
+    <tr><td>ctx.fillRectangle</td><td></td></tr>
+    <tr><td>ctx.getImageData</td><td></td></tr>
+</table>
+
+
+

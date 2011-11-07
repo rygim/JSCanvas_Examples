@@ -43,6 +43,8 @@ parser = require("./ryanParser.js").ryanParser;
             serveFileContent(response, content, contentType);
             return;
         }
+        
+        console.log(contentType + " - " + filename);
     
         path.exists(layoutPath, function(exists){
             if(!exists){
@@ -82,6 +84,10 @@ parser = require("./ryanParser.js").ryanParser;
     
         if (file.lastIndexOf(".png") === file.length - 4){
             return "application/png";
+        }
+        
+        if (file.lastIndexOf(".css") == file.length - 4){
+            return "text/css";
         }
     
         return "text/html"
