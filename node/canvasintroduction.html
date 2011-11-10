@@ -4,21 +4,58 @@
     $(document).ready(function(){
         bindPresentationActions("/introduction.html", [], "/tip1.html");
     });
+    
+    var img = new Image();
+    img.src = "images/chris_dagostino.png";
+    img.onload = function(){
+        drawPage();
+    }
+    var randomColor = function(){
+        var alpha = Math.random() * .25 + .75,
+        red = Math.round(Math.random() * 255),
+        green = Math.round(Math.random() * 255),
+        blue = Math.round(Math.random() * 255);
+            
+        return "rgba(" + red + ", " + green + ", " + blue + "," + alpha + ")";
+    };
+    
+    var drawPage = function(){
+        var numText = 20;
+        
+        var drawImageCtx = $("#draw-image-canvas")[0].getContext("2d");
+        drawImageCtx.drawImage(img, 0, 0, img.width, img.height);
+        
+        var fillTextCtx = $("#fill-text-canvas")[0].getContext("2d");
+        for(var i = 0; i < numText; i++){
+            fillTextCtx.fillStyle = randomColor();
+            fillTextCtx.fillText("Hello World", Math.random() * fillTextCtx.canvas.width, Math.random() * fillTextCtx.canvas.height);    
+        }
+        
+        var drawArcCtx = $("#draw-arc-canvas")[0].getContext("2d");
+        drawArcCtx.lineWidth = 15;
+        drawArcCtx.strokeStyle = "black";
+        drawArcCtx.arc(100, 100, 25, Math.PI / 3, 5, false);    
+        drawArcCtx.stroke();
+
+        var fillRectCtx = $("#fill-rectangle-canvas")[0].getContext("2d");
+        fillRectCtx.fillStyle = "gray";
+        fillRectCtx.fillRect(25, 25, 100, 50);    
+            
+          
+    };
+    
+   
 </script>
 
 <h3>The canvas is accessed through javascript</h3>
-<pre class="prettyprint">
-    var ctx = document.getElementById("application-canvas");
-</pre>
+<pre class="prettyprint">var ctx = document.getElementById("application-canvas").getContext("2d");</pre>
 
 <h3>Interacting with the canvas: </h3>
 
 <table>
     <tr>
         <td>
-            <pre class="prettyprint">
-                ctx.drawImage
-            </pre>
+            <pre class="prettyprint">ctx.drawImage</pre>
         </td>
         <td>
             <canvas id="draw-image-canvas" width="200" height="200" />
@@ -26,18 +63,37 @@
     </tr>
     <tr>
         <td>
-            <pre class="prettyprint">
-                ctx.fillText
-            </pre>
+            <pre class="prettyprint">ctx.fillText</pre>
         </td>
         <td>
-            
+            <canvas id="fill-text-canvas" width="200" height="200" />
         </td>
     </tr>
-    <tr><td>ctx.drawArc</td><td></td></tr>
-    <tr><td>ctx.fillRectangle</td><td></td></tr>
-    <tr><td>ctx.getImageData</td><td></td></tr>
-</table>
+    <tr>
+        <td>
+            <pre class="prettyprint">ctx.arc</pre>
+        </td>
+        <td>
+            <canvas id="draw-arc-canvas" width="200" height="200" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <pre class="prettyprint">ctx.fillRectangle</pre>
+        </td>
+        <td>
+            <canvas id="fill-rectangle-canvas" width="200" height="200" />
+        </td>
+    </tr>
+    <tr>    
+        <td>
+            <pre class="prettyprint">ctx.getImageData</pre>
+        </td>
+        <td>
+            <canvas id="draw-image-canvas" width="200" height="200" />
+        </td>
+    </tr>    
+</table>    
 
 
 

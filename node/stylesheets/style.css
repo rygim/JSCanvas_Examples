@@ -2,8 +2,8 @@ body{
     padding: 0px;
     margin: 0px;
     height: 100%; 
-    background: url("/images/bg-tile.png");
-    color: #272f30;
+    color: #33332D;
+    background-color: #FFF8E3;
 }
 
 h2, h3, h4, h5{
@@ -11,40 +11,40 @@ h2, h3, h4, h5{
     padding: 0px;
 }
 
-#content{
+#main-content{
     margin: 5px;
     margin-left: auto;
     margin-right: auto;
-    width: 800px;
+    width: 1680px;
     padding: 5px;
+    padding-left: 100px;
+}
+
+#content{
+    margin-left: 15px;
+    padding: 5px;
+    font-size: 30px;
+}
+
+#main-content h2{
+    font-size: 40px;
 }
 
 #banner{
-    height: 75px;
+    height: 60px;
     width: 100%;
-    background: url("/images/banner-bg.png") repeat-x;
-    margin: 0px 0px 10px 0px;
+    background-color: #FB4105;
+    margin: 0px;
+    padding: 0px;
     color: #FFF;
 }
 
 #banner #banner-title{
-    float: left;
-    padding: 10px;
-    font-size: 30px;
-}
-
-#banner #banner-subtitle{
-    float: right;
-    padding: 5px;
+    padding: 0px;
+    padding-left: 5px;
+    font-size: 45px;
+    width: 1680px;
+    margin-left: auto;
+    margin-right: auto;
     font-weight: bold;
-    font-size: 110%;
-}
-
-#banner #banner-subtitle a{
-    color: #FFF;
-    text-decoration: none;
-    margin-right: 20px;
-    cursor: pointer;
-    font-weight: normal;
-    font-size: 90%;
 }

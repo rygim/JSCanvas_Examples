@@ -2,7 +2,7 @@
 @(:header="Tip 1 :  Code for your target audience")
 <script type="text/javascript">
         $(document).ready(function(){
-            bindPresentationActions("/canvasintroduction.html", [], "/tip2.html");
+            bindPresentationActions("/canvasintroduction.html", [], "/tip1Example.html");
         });
 </script>
 <style>
@@ -23,42 +23,37 @@
 <h4>Slow browsers & timing within the application</h4>
 <div>The environment that the applicaiton is executing in may be slow</div>
 <h5>Your Game loop:</h5>
-<table>
-    <tr><td>Simple game loop (Don't do this)</td><td>
-            <pre class="prettyprint">while(true){<br />
-    update();<br />
-    draw();<br />
+<table><tr>
+        <td>Simple animation loop (Don't do this)</td>
+        <td><pre class="prettyprint">
+while(true){
+    update();
+    draw();
 };
 </pre></td></tr>
-</table>
-
-<table>
-    <tr><td>Actual game loop (OK)</td><td>
-            <pre class="prettyprint">var loop = function(){<br />
-    update();<br />
-    draw();<br />
-};<br />
-setInterval(loop, 5);
-</pre></td></tr>
-</table>
-
-<table>
-    <tr><td>Better game loop</td><td>
-            <pre class="prettyprint">
-var lastDrawTime = new Date().getTime();
+    <tr>
+        <td>Actual animation loop (OK)</td>
+        <td><pre class="prettyprint">
 var loop = function(){
+    update();
+    draw();
+};
+setInterval(loop, 10);
+</pre></td></tr>
+    <tr>
+        <td>Better animation loop</td>
+        <td><pre class="prettyprint">
+var lastDrawTime = new Date().getTime();
+var drawLoop = function(){
     var startDrawTime = new Date().getTime(); 
     interpolate(startDrawTime - lastDrawTime);
     lastDrawTime = startDrawTime;
     draw();
+    setTimeout(drawLoop, 5);
 };
-setInterval(loop, 5);
-setInterval(update, 40);
-</pre></td></tr>
-</table>
-
-<table>
-    <tr><td>Future game loop</td><td>
+drawLoop();
+setInterval(update, 40);</pre></td></tr>
+    <tr><td>Future animation loop</td><td>
             <pre class="prettyprint">
 var lastDrawTime = new Date().getTime();
 var drawLoop = function(){
@@ -70,4 +65,4 @@ var drawLoop = function(){
 };
 setInterval(update, 40);
 </pre></td></tr>
-</table>
+</table>    

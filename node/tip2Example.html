@@ -1,0 +1,27 @@
+@(:title="Tip 2")
+@(:header="Tip 2 : Example")
+<script type="text/javascript" src="/scripts/frontPage.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        bindPresentationActions("/tip2.html", [], "/tip3.html");
+    });
+        
+    window.onload = function(){
+        var ctx = document.getElementById("animation-canvas").getContext("2d");                 
+        frontPage.init(.5, ctx);
+
+        var lastDrawTime = new Date().getTime();
+        var drawLoop = function(){
+            var startDrawTime = new Date().getTime(); 
+            var elapsedTime = startDrawTime - lastDrawTime;
+            frontPage.update(elapsedTime, ctx);
+            lastDrawTime = startDrawTime;
+            frontPage.draw($("#animation-canvas"), ctx);
+            setTimeout(drawLoop, 5);
+        };
+        drawLoop();
+    };
+</script>
+
+<canvas id="animation-canvas" width="700" height="500" />    
+

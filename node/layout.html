@@ -20,12 +20,13 @@
     </head>
     <body>
         <div id="banner">
-            <span id="banner-title"><h3>@(:title)</h3></span>
-            <span id="banner-subtitle"><a href="/map.html">Map</a></span>
+            <div id="banner-title">@(:title)</div>
         </div>
-        <div id="content">
+        <div id="main-content">
             <h2>@(:header)</h2>
-            @(yield)
+            <div id="content">
+                @(yield)                
+            </div>
         </div>
     </body>
 </html>

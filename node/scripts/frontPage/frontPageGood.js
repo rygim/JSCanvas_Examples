@@ -16,8 +16,8 @@ var setCanvasToPageWidth = function($canvas, dimensionData){
         dimensionData.height = window.innerHeight;
         dimensionData.width = window.innerWidth;
     
-        $canvas.attr("height", window.innerHeight);
-        $canvas.attr("width", window.innerWidth);
+        $canvas.attr("height",Math.round(window.innerHeight / 2));
+        $canvas.attr("width", Math.round(window.innerWidth / 2));
     }
 };
 
@@ -53,8 +53,6 @@ var updateClouds = function(clouds, ctx){
 };
 
 var drawClouds = function(clouds, ctx){
-
-    
     for (var i = 0; i < clouds.length; i++){
         var cloudGradient = ctx.createRadialGradient(clouds[i].x, clouds[i].y, 10, clouds[i].x + Math.random() * 6, clouds[i].y + Math.random() * 6, 30);
         cloudGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
