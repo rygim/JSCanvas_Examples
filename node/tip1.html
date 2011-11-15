@@ -5,26 +5,22 @@
             bindPresentationActions("/canvasintroduction.html", [], "/tip1Example.html");
         });
 </script>
-<style>
-    .yes{
-        background-color: green;
-    }
-</style>
 
 <h3>Decide what your target audience/environment hardware.</h3>
 
 <h4>Adoption: (cite wikipedia)</h4>
-<table>
-    <tr><td></td><td>Trident</td><td>Gecko</td><td>WebKit</td><td>Presto</td></tr>
-    <tr><td>save</td><td class="yes" rowspan="2">5.0</td><td class="yes" rowspan="2">1.8</td><td class="yes" rowspan="2">Yes</td><td class="yes" rowspan="2">2.00</td></tr>
-    <tr><td>restore</td></tr>
-</table>
+<ul>
+        <li>The common engines support drawing to the canvas</li>
+        <li>Trident - since IE9, Gecko - Chrome, Webkit - Mozilla, Presto - Opera</li>
+        <li>No one wants to implement ctx.drawSystemFocusRing, so technically no one fully supports it</li>
+</ul>
 
-<h4>Slow browsers & timing within the application</h4>
-<div>The environment that the applicaiton is executing in may be slow</div>
+<h4>You will deal with fast and slow browsers, normalize your time</h4>
+<div>The environment that the application can execute at any speed</div>
+<div>Javascript is single threaded</div>
 <h5>Your Game loop:</h5>
 <table><tr>
-        <td>Simple animation loop (Don't do this)</td>
+        <td>Simple animation loop<br /> (Don't do this)</td>
         <td><pre class="prettyprint">
 while(true){
     update();
@@ -32,7 +28,7 @@ while(true){
 };
 </pre></td></tr>
     <tr>
-        <td>Actual animation loop (OK)</td>
+        <td>Actual animation loop<br /> (OK)</td>
         <td><pre class="prettyprint">
 var loop = function(){
     update();
@@ -41,28 +37,18 @@ var loop = function(){
 setInterval(loop, 10);
 </pre></td></tr>
     <tr>
-        <td>Better animation loop</td>
+        <td>Better animation loop<br /> (More optimal)</td>
         <td><pre class="prettyprint">
 var lastDrawTime = new Date().getTime();
 var drawLoop = function(){
     var startDrawTime = new Date().getTime(); 
-    interpolate(startDrawTime - lastDrawTime);
+    update(startDrawTime - lastDrawTime);
     lastDrawTime = startDrawTime;
     draw();
-    setTimeout(drawLoop, 5);
+    setTimeout(drawLoop, 5);// or requestAnimationFrame(drawLoop) if you want to 
+                            // be slick.  It is still in beta for all browsers and 
+                            // not part of canvas API
 };
 drawLoop();
-setInterval(update, 40);</pre></td></tr>
-    <tr><td>Future animation loop</td><td>
-            <pre class="prettyprint">
-var lastDrawTime = new Date().getTime();
-var drawLoop = function(){
-    var startDrawTime = new Date().getTime(); 
-    interpolate(startDrawTime - lastDrawTime);
-    lastDrawTime = startDrawTime;
-    draw();
-    requestAnimationFrame(drawLoop);
-};
-setInterval(update, 40);
 </pre></td></tr>
 </table>    
