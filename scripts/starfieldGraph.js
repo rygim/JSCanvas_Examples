@@ -11,9 +11,9 @@ var starfieldGraph = function(){
             yPixelOffset = ctx.canvas.height / maxTime;
         
         ctx.strokeStyle = color;
-        ctx.lineWidth = 5;
+        ctx.lineWidth = 3;
         ctx.beginPath();
-        ctx.font = "20px Verdana";            
+        ctx.font = "30px Verdana bold";            
         ctx.fillStyle = color;
         for(var i = chartDataLine.length; i--;){
             var data = chartDataLine[i];
@@ -35,9 +35,6 @@ var starfieldGraph = function(){
             isMoved = true;
         }
         ctx.stroke();
-        
-
-        
     };
     
     return {
@@ -57,8 +54,8 @@ var starfieldGraph = function(){
           maxNumStars = Math.max(maxNumStars, numStars);
       },
       draw: function(ctx){
-        for(var i = chartData.length; i--;){
-            drawChart(ctx, chartData[i], colorData[i], i * 25 + 50);
+        for(var i = 0; i < chartData.length; i++){
+            drawChart(ctx, chartData[i], colorData[i], i * 30 + 50);
         }
       }  
     };

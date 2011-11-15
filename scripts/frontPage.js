@@ -13,8 +13,8 @@ var frontPage = function(){
     }
         
     var expensiveFunction = function(){
-        for(var i = 100; i--;){ 
-            console.log("");
+        for(var i = 5000; i--;){ 
+            $("body").attr("ryan", "iscool" + i);
         } 
     };
     
@@ -69,12 +69,12 @@ var frontPage = function(){
     };
     
     var updateTossedItems = function(elapsedTime, tossedItems, ctx){
-        var normalizedTime = 1 / (elapsedTime || 1);
+        var normalizedTime = elapsedTime / 100;
         for(var i = tossedItems.length; i--; ){
             tossedItems[i].vy += ay * normalizedTime;
             tossedItems[i].x += tossedItems[i].vx * normalizedTime;
             tossedItems[i].y += tossedItems[i].vy * normalizedTime;
-            tossedItems[i].rotation += tossedItems[i].rotationSpeed;
+            tossedItems[i].rotation += tossedItems[i].rotationSpeed * normalizedTime;
         }
     };
     
@@ -124,8 +124,9 @@ var frontPage = function(){
             cloudCtx = cloudCtx || ctx;
             updateTossedItems(elapsedTime, tossedItems, ctx);  
         },
-        init: function(isIntro, sizeMult, ctx){
+        init: function(isIntro, sizeMult, ctx, numHeads){
             sizeMultiplier = sizeMult;
+            numTossedItems = numHeads || 20;
             ay = sizeMultiplier * 50;
             drawIntroText = isIntro;
             for(var i = numTossedItems; i--; ){

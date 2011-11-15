@@ -8,19 +8,19 @@
         
     window.onload = function(){
         var $canvas = $("#animation-canvas"),
-            ctx = $canvas[0].getContext("2d");                 
+        ctx = $canvas[0].getContext("2d");                 
             
-        frontPage.init(false, .5, ctx);
+        frontPage.init(false, .5, ctx, 5);
 
         var lastUpdateTime = +new Date(),
-            lastLoopTime = +new Date();
+        lastLoopTime = +new Date();
 
         var drawLoop = function(){
             var startDrawTime = +new Date(); 
             var elapsedTime = startDrawTime - lastLoopTime;
             frontPage.longUpdateWithInterpolation(elapsedTime, ctx);
             
-//            if(startDrawTime - lastUpdateTime > 1000){
+//            if(startDrawTime - lastUpdateTime > 500){
 //                lastUpdateTime = startDrawTime;
 //                frontPage.longUpdateNoInterpolation(elapsedTime, ctx);
 //            }          

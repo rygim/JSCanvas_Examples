@@ -10,9 +10,8 @@
         setInterval(function(){
             $canvas.attr("height", window.innerHeight);
             $canvas.attr("width", window.innerWidth);
-            frontPage.update(1, ctx);
-            frontPage.draw($canvas, ctx);
-            
+            frontPage.update(50, ctx);
+            frontPage.draw($canvas, ctx);            
         }, 300);
     });
        

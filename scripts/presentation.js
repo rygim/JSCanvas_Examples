@@ -52,9 +52,9 @@ var bindPresentationActions = function(backLocation, actions, nextLocation) {
             return;
         }
         
-        var isNext = event.which === 37;
-        var isBack = event.which === 39 || event.which === 32;
-        
+        var isNext = event.which === 46 || event.which === 188;
+        var isBack = event.which === 44 || event.which === 32 || event.which == 190;
+        console.log(event.which);
         if (isNext && index === 0 && backLocation !== undefined){
             window.location = backLocation + "?goback=true";
         }

@@ -1,0 +1,149 @@
+DEPRECATION WARNING: config.action_view.debug_rjs will be removed in 3.1, from 3.1 onwards you will need to install prototype-rails to continue to use RJS templates . (called from service at /home/rgimmy/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/1.9.1/webrick/httpserver.rb:111)
+
+
+Started GET "/images/rails.png" for 127.0.0.1 at 2011-09-19 09:06:48 -0700
+
+ActionController::RoutingError (No route matches "/images/rails.png"):
+  
+
+Rendered /home/rgimmy/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.0.10/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.6ms)
+
+
+Started GET "/home" for 127.0.0.1 at 2011-09-19 09:06:51 -0700
+  Processing by HomeController#index as HTML
+Rendered home/index.erb within layouts/application (17.5ms)
+Completed 200 OK in 32ms (Views: 31.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/home/canvasIntro" for 127.0.0.1 at 2011-09-19 09:07:01 -0700
+  Processing by HomeController#canvasIntro as HTML
+Rendered home/canvasIntro.erb within layouts/application (17.1ms)
+Completed 200 OK in 46ms (Views: 43.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/home?goback=true" for 127.0.0.1 at 2011-09-19 09:07:02 -0700
+  Processing by HomeController#index as HTML
+  Parameters: {"goback"=>"true"}
+Rendered home/index.erb within layouts/application (4.2ms)
+Completed 200 OK in 15ms (Views: 14.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/images/rails.png" for 192.168.134.1 at 2011-09-19 09:09:42 -0700
+
+ActionController::RoutingError (No route matches "/images/rails.png"):
+  
+
+Rendered /home/rgimmy/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.0.10/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (5.4ms)
+DEPRECATION WARNING: config.action_view.debug_rjs will be removed in 3.1, from 3.1 onwards you will need to install prototype-rails to continue to use RJS templates . (called from service at /home/rgimmy/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/1.9.1/webrick/httpserver.rb:111)
+
+
+Started GET "/images/rails.png" for 192.168.134.1 at 2011-09-19 09:12:54 -0700
+
+ActionController::RoutingError (No route matches "/images/rails.png"):
+  
+
+Rendered /home/rgimmy/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.0.10/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.5ms)
+
+
+Started GET "/home" for 192.168.134.1 at 2011-09-19 09:13:02 -0700
+  Processing by HomeController#index as HTML
+Rendered home/index.erb within layouts/application (27.6ms)
+Completed 200 OK in 107ms (Views: 106.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/home/canvasIntro" for 192.168.134.1 at 2011-09-19 09:14:09 -0700
+  Processing by HomeController#canvasIntro as HTML
+Rendered home/canvasIntro.erb within layouts/application (7.4ms)
+Completed 200 OK in 26ms (Views: 25.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/home/canvasIntro" for 192.168.134.1 at 2011-09-19 09:14:11 -0700
+  Processing by HomeController#canvasIntro as HTML
+Rendered home/canvasIntro.erb within layouts/application (4.3ms)
+Completed 200 OK in 11ms (Views: 10.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/home/canvasIntro" for 192.168.134.1 at 2011-09-19 09:14:18 -0700
+  Processing by HomeController#canvasIntro as HTML
+Rendered home/canvasIntro.erb within layouts/application (6.5ms)
+Completed 200 OK in 14ms (Views: 13.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/home" for 192.168.134.1 at 2011-09-19 09:14:22 -0700
+  Processing by HomeController#index as HTML
+Rendered home/index.erb within layouts/application (3.9ms)
+Completed 200 OK in 11ms (Views: 10.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/home" for 192.168.134.1 at 2011-09-19 09:15:12 -0700
+  Processing by HomeController#index as HTML
+Rendered home/index.erb within layouts/application (6.4ms)
+Completed 200 OK in 17ms (Views: 16.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/home" for 192.168.134.1 at 2011-09-19 09:15:14 -0700
+  Processing by HomeController#index as HTML
+Rendered home/index.erb within layouts/application (9.3ms)
+Completed 200 OK in 17ms (Views: 16.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/home/canvasIntro" for 192.168.134.1 at 2011-09-19 09:16:10 -0700
+  Processing by HomeController#canvasIntro as HTML
+Rendered home/canvasIntro.erb within layouts/application (11.3ms)
+Completed 200 OK in 29ms (Views: 27.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/home/canvasApi" for 192.168.134.1 at 2011-09-19 09:16:18 -0700
+  Processing by HomeController#canvasApi as HTML
+Rendered home/canvasApi.erb within layouts/application (4.8ms)
+Completed 200 OK in 38ms (Views: 36.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/home/graphicsIntro" for 192.168.134.1 at 2011-09-19 09:16:23 -0700
+  Processing by HomeController#graphicsIntro as HTML
+Rendered home/graphicsIntro.erb within layouts/application (6.4ms)
+Completed 200 OK in 14ms (Views: 13.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/home/starfieldIntro" for 192.168.134.1 at 2011-09-19 09:16:30 -0700
+  Processing by HomeController#starfieldIntro as HTML
+Rendered home/starfieldIntro.erb within layouts/application (4.7ms)
+Completed 200 OK in 14ms (Views: 13.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/home/starfield" for 192.168.134.1 at 2011-09-19 09:16:37 -0700
+  Processing by HomeController#starfield as HTML
+Rendered home/starfield.erb within layouts/application (9.4ms)
+Completed 200 OK in 18ms (Views: 16.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/home/starfield" for 192.168.134.1 at 2011-09-19 09:16:42 -0700
+  Processing by HomeController#starfield as HTML
+Rendered home/starfield.erb within layouts/application (4.7ms)
+Completed 200 OK in 11ms (Views: 10.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/home/starfieldIntro" for 192.168.134.1 at 2011-09-19 09:23:56 -0700
+  Processing by HomeController#starfieldIntro as HTML
+Rendered home/starfieldIntro.erb within layouts/application (6.1ms)
+Completed 200 OK in 15ms (Views: 13.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/home/starfield" for 192.168.134.1 at 2011-09-19 09:24:15 -0700
+  Processing by HomeController#starfield as HTML
+Rendered home/starfield.erb within layouts/application (4.2ms)
+Completed 200 OK in 10ms (Views: 9.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/images/rails.png" for 192.168.134.1 at 2011-09-19 11:32:28 -0700
+
+ActionController::RoutingError (No route matches "/images/rails.png"):
+  
+
+Rendered /home/rgimmy/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.0.10/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (200.2ms)
+
+
+Started GET "/home/" for 192.168.134.1 at 2011-09-19 11:32:40 -0700
+  Processing by HomeController#index as HTML
+Rendered home/index.erb within layouts/application (83.9ms)
+Completed 200 OK in 122ms (Views: 120.9ms | ActiveRecord: 0.0ms)

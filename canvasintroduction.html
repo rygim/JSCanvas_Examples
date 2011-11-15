@@ -53,7 +53,8 @@
 </script>
 
 <h3>The canvas is accessed through javascript</h3>
-<pre class="prettyprint">var ctx = document.getElementById("application-canvas").getContext("2d");</pre>
+<pre class="prettyprint">var ctx = document.getElementById("application-canvas")
+                           .getContext("2d");</pre>
 
 <h3>Interacting with the canvas: </h3>
 
@@ -76,7 +77,8 @@
     </tr>
     <tr id="example3" class="hidden">
         <td>
-            <pre class="prettyprint">ctx.arc(x, y, radius, startRadians, endRadians, isAnticlockwise)</pre>
+            <pre class="prettyprint">ctx.arc(x, y, radius, 
+    startRadians, endRadians, isAnticlockwise)</pre>
         </td>
         <td>
             <canvas id="draw-arc-canvas" width="200" height="200" />
