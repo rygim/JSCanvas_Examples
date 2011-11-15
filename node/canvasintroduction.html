@@ -55,7 +55,7 @@
 <table>
     <tr>
         <td>
-            <pre class="prettyprint">ctx.drawImage</pre>
+            <pre class="prettyprint">ctx.drawImage(imageObj, x, y)</pre>
         </td>
         <td>
             <canvas id="draw-image-canvas" width="200" height="200" />
@@ -63,7 +63,7 @@
     </tr>
     <tr>
         <td>
-            <pre class="prettyprint">ctx.fillText</pre>
+            <pre class="prettyprint">ctx.fillText(text, x, y)</pre>
         </td>
         <td>
             <canvas id="fill-text-canvas" width="200" height="200" />
@@ -71,7 +71,7 @@
     </tr>
     <tr>
         <td>
-            <pre class="prettyprint">ctx.arc</pre>
+            <pre class="prettyprint">ctx.arc(x, y, radius, startRadians, endRadians, isAnticlockwise)</pre>
         </td>
         <td>
             <canvas id="draw-arc-canvas" width="200" height="200" />
@@ -79,21 +79,23 @@
     </tr>
     <tr>
         <td>
-            <pre class="prettyprint">ctx.fillRectangle</pre>
+            <pre class="prettyprint">ctx.fillRectangle(x, y, width, height)</pre>
         </td>
         <td>
             <canvas id="fill-rectangle-canvas" width="200" height="200" />
         </td>
-    </tr>
-    <tr>    
-        <td>
-            <pre class="prettyprint">ctx.getImageData</pre>
-        </td>
-        <td>
-            <canvas id="draw-image-canvas" width="200" height="200" />
-        </td>
-    </tr>    
+    </tr> 
 </table>    
+
+<h3>Way more interesting,  less demo-able methods</h3>
+<ul>
+    <li>
+            <pre class="prettyprint">ctx.getImageData(x, y, width, height)</pre>
+    </li>
+    <li>
+            <pre class="prettyprint">ctx.toDataUrl()</pre>
+    </li>
+</ul>
 
 
 
