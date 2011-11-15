@@ -6,5 +6,20 @@
         });
 </script>
 
-Leave at tip 4
+<h3>Animation</h3>
+<ul>
+        <li>You may be able to get away with only drawing image deltas, but this becomes non trivial the more you add to your scenes</li>
+        <li>The canvas is not layered, it is essentially a buffered bitmap, so drawing something over something else will overwrite the other object</li>
+        <li>ctx.clearRect(x, y, width, height) is able to clear the canvas for you, but this will also take way the background</li>
+</ul>
 
+
+
+<h3>How do we do layers and perhaps only clear what we need to?</h3>
+<ul>
+        <li>Canvases are transparent by default</li>
+        <li>Using some CSS, we can layer n number of canvases on top of one another.</li>
+        <li>This way, we can draw anything to separate layers and not worry about removing anything from a layer above or below the current canvas ctx</li>
+        <li>There is a little more overhead with n number of 2d canvas contexts</li>
+</ul>
+        
