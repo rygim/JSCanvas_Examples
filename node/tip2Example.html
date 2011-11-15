@@ -1,5 +1,5 @@
-@(:title="Tip 2")
-@(:header="Tip 2 : Example")
+@(:title="Tip 2 Example")
+@(:header="Tip 2 : Making sure that you have a tight animation loop")
 <script type="text/javascript" src="/scripts/frontPage.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
@@ -8,7 +8,7 @@
         
     window.onload = function(){
         var ctx = document.getElementById("animation-canvas").getContext("2d");                 
-        frontPage.init(.5, ctx);
+        frontPage.init(false, .5, ctx);
 
         var lastDrawTime = new Date().getTime();
         var drawLoop = function(){

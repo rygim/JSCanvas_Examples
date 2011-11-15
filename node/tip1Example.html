@@ -1,5 +1,5 @@
-@(:title="Tip 1")
-@(:header="Tip 1 :  Code for your target audience : Example")
+@(:title="Tip 1 Example")
+@(:header="Tip 1 Example :  Which animation loop to optimize the user/development experience?")
 <script type="text/javascript" src="/scripts/starfield.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
@@ -8,8 +8,7 @@
         
     window.onload = function(){
         var ctx = document.getElementById("starfield").getContext("2d");                 
-        starfield.init(ctx);
-        
+        starfield.init(ctx, false, function(){ return 250;});
         ctx.strokeStyle = "black";
         ctx.beginPath();
         ctx.rect(0, 0, ctx.canvas.width, ctx.canvas.height);
@@ -20,30 +19,30 @@
         ctx.fillText(text, (ctx.canvas.width - dim.width) / 2, 250);
             
         ///          bad game loop
-        //            while(true){
-        //                starfield.update(ctx);
-        //                starfield.draw(ctx);
-        //            }
+//           while(true){
+//                starfield.update(ctx);
+//               starfield.draw(ctx);
+//           }
  
         ////          OK game loop
-        //            var loop = function(){
-        //                starfield.update(ctx);
-        //                starfield.draw(ctx);
-        //                setTimeout(loop, 10);
-        //            };
-        //            loop();
+//                 var loop = function(){
+//                     starfield.update(ctx);
+//                       starfield.draw(ctx);
+//                    setTimeout(loop, 10);
+//                   };
+//                 loop();
 
         ////            time normalized update loop
-        //        var lastDrawTime = new Date().getTime();
-        //        var drawLoop = function(){
-        //            var startDrawTime = new Date().getTime(); 
-        //            var elapsedTime = startDrawTime - lastDrawTime;
-        //            starfield.update(ctx, elapsedTime);
-        //            lastDrawTime = startDrawTime;
-        //            starfield.draw(ctx);
-        //            setTimeout(drawLoop, 5);
-        //        };
-        //        drawLoop();
+              var lastDrawTime = new Date().getTime();
+              var drawLoop = function(){
+                  var startDrawTime = new Date().getTime(); 
+                  var elapsedTime = startDrawTime - lastDrawTime;
+                  starfield.update(ctx, elapsedTime);
+                  starfield.draw(ctx);
+                  lastDrawTime = startDrawTime;
+                  setTimeout(drawLoop, 5);
+                };
+                drawLoop();
     };
 </script>
 

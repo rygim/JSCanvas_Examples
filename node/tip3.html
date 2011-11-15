@@ -3,20 +3,21 @@
 
 <script type="text/javascript">
         $(document).ready(function(){
-            bindPresentationActions("/tip2Example.html", [], "/tip3Example.html");
+            bindPresentationActions("/tip2Example.html", [showHideAction($("#fps")), showHideAction($("#memory"))], "/tip3Example.html");
         });
 </script>
 
+<span id="fps" class="hidden">
 <h4>Frames per second</h4>
-Frames per second is a good way to judge the
-Make sure to test your minimum frames per second under stress
+Frames per second is a good way to judge the responsiveness of your app
+Make sure to stress your application to see where the minimum number of frames per second are in the application
+</span>
 
-
+<span id="memory" class="hidden">
 <h4>Memory</h4>
 Javascript has it's own garbage collector
-Javascript operates using closures, so memory may stick around unbeknownst 
-
-
-
-
-
+two guidelines from the apple developer site:
+use the delete keyword to free unused memory
+use the var keyword
+Be wary of closures as they may contain hidden memory leaks
+</span>

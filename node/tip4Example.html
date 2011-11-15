@@ -1,5 +1,5 @@
-@(:title="Tip 4")
-@(:header="Tip 4 : Example")
+@(:title="Tip 4 Example")
+@(:header="Tip 4 Example : How can I only draw what I need to?")
 <script type="text/javascript" src="/scripts/frontPage.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
@@ -8,7 +8,7 @@
         
     window.onload = function(){
         var ctx = document.getElementById("animation-canvas").getContext("2d");                 
-        frontPage.init(.5, ctx);
+        frontPage.init(false, .5, ctx);
         var lastFps = 0, 
             currentFps = 0, 
             numMillisecondsBetweenFpsUpdate = 1000;
@@ -32,6 +32,5 @@
         }, numMillisecondsBetweenFpsUpdate);
     };
 </script>
-multiple canvases
 <canvas id="animation-canvas" width="700" height="500" />    
 

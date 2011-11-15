@@ -1,29 +1,28 @@
 @(:title="Front page")
-<script src="/scripts/frontPage/frontPageBad.js" type="text/javascript"></script>
+<script src="/scripts/frontPage.js" type="text/javascript"></script>
 <script type="text/javascript">
-    var showData = false;
-  
-    var showFpsData = function(){
-        return showData;
-    };
-
     $(document).ready(function(){
-        var $canvas = $("#front-page-canvas");
-        frontPage($canvas, showFpsData);
+        var $canvas = $("#front-page-canvas"),
+                ctx = $canvas[0].getContext("2d");
+
+        frontPage.init(true, 1, ctx);
+        
+        setInterval(function(){
+            frontPage.update(1, ctx);
+            frontPage.draw($canvas, ctx);
+        }, 300);
     });
        
     $(document).ready(function(){
-        var actions = [ newAction(function(){ showData = true; }, function(){ showData = false; }) ];
-        bindPresentationActions(undefined, actions, "/introduction.html");
+        bindPresentationActions(undefined, [], "/introduction.html");
     });
 </script>
 <style type="text/css">
-    canvas{
+    #front-page-canvas{
         top: 0px;
         left: 0px;
         position: absolute;
     }
 </style>
-
 
 <canvas id="front-page-canvas" height="300" width="300" />

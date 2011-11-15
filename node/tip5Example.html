@@ -1,0 +1,78 @@
+@(:title="Tip 5 Example")
+@(:header="Tip 5 Example : How should I draw the stars for the starfield?")
+<script type="text/javascript" src="/scripts/starfield.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        bindPresentationActions("/tip5.html", [], "/thanks.html");
+    });
+        
+    window.onload = function(){
+        var ctx = document.getElementById("animation-canvas").getContext("2d");                 
+        starfield.init(ctx, true, numStars, useAlpha, useImage);
+        var lastDrawTime = new Date().getTime();
+        var drawLoop = function(){
+            var startDrawTime = new Date().getTime(); 
+            var elapsedTime = startDrawTime - lastDrawTime;
+            starfield.update(ctx, elapsedTime);
+            starfield.draw(ctx);
+            lastDrawTime = startDrawTime;
+            requestAnimationFrame(drawLoop);
+        };
+        drawLoop();
+        
+        $("input:text").focus(function(){
+            $("#numStars").attr("checked", "");
+        });
+        
+        $("#reset").click(function(){
+            $("#numStars") .val(10);
+        });
+    };
+    
+    var useAlpha = function(){
+        return $("#useAlpha").is(':checked');
+    };
+    
+    var useImage = function(){
+        return $("#useImage").is(':checked');
+    };
+    
+    var numStars = function(){
+       return +($("#numStars") .val());
+    };
+    
+    var incrementNumStars = function(){
+        if($("#autoIncrement").is(':checked')){
+            var val = +($("#incrementBy") .val());
+            if($("#increment").is(':checked')){
+                $("#numStars").val(Math.min(numStars() + val, 700));    
+            }
+            else{
+                $("#numStars").val(Math.max(numStars() - val, 0));        
+            }
+        }        
+    };
+    
+    setInterval(incrementNumStars, 250);
+</script>
+
+<canvas id="animation-canvas" width="700" height="500" ></canvas>
+<form>
+    <table>
+        <tr>
+            <td><label for="useAlpha">Use Alpha?</label><input id="useAlpha" type="checkbox" /></td>
+           <td><label for="useImage">Use Image?</label><input id="useImage" type="checkbox" /></td>
+        </tr>
+        <tr>
+            <td><label for="numStars">Number of stars</label><input id="numStars" type="text" value="20" /></td>
+           <td><label for="autoIncrement">Auto-Increment</label><input id="autoIncrement" type="checkbox" checked="checked" /></td>
+        </tr>
+        <tr>
+            <td><label for="reset"></label><input id="reset" type="button" value="Reset" /></td>
+            <td><label for="incrementBy">Increment By</label><input id="incrementBy" type="text" value="5" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><label for="increment">Increment?</label><input id="increment" type="checkbox" checked="checked" /></td>
+        </tr>
+    </table>
+    </form>
