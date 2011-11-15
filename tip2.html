@@ -4,7 +4,6 @@
 <script type="text/javascript">
         $(document).ready(function(){
             bindPresentationActions("/tip1Example.html", [showHideAction($("#example")), 
-                                                          showHideAction($("#web-workers")),
                                                           showHideAction($("#other-concerns"))], "/tip2Example.html");
         });
 </script>
@@ -27,21 +26,13 @@
 </table>     
 </span>
 <br />
-<span id="web-workers" class="hidden">
-<h4>Web Workers</h4>
-<ul>
-        <li>Javascript can now execute threads</li>
-        <li>The API is in beta, and not part of canvas</li>
-        <li>The threads can't make UI changes, similar to the UI thread on android devices</li>
-</ul>
-</span>
 
 <span id="other-concerns" class="hidden">
 <h4>Other concerns</h4>
 <ul>
         <li>jQuery, underscore, prototype are useful, but they add a lot of overhead and kill performance</li>
         <li>It takes a non-negligible amount of time to access array items and members in the prototype chain</li>
-        <li>Caching local variables in memory may provide a good speed boost</li>
+        <li>Caching local variables in scope may provide a good speed boost</li>
 </ul>
 </span>
 <br />

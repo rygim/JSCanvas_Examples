@@ -133,7 +133,6 @@ var starfield = function(){
                 starfieldGraph.addChartData(index, stars.length, end - start);
                 starfieldGraph.draw(ctx);
                 start = end;
-                
             }
         },
         update: function(ctx, elapsedTime){  

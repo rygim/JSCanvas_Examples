@@ -62,7 +62,6 @@
         }        
     };
  
-    
     setInterval(incrementNumStars, 250);
 </script>
 
@@ -74,15 +73,16 @@
            <td><label for="useImage">Use Image?</label><input id="useImage" type="checkbox" /></td>
         </tr>
         <tr>
-            <td><label for="numStars">Number of stars</label><input id="numStars" type="text" value="20" /></td>
+            <td><label for="numStars">Number of stars</label><input id="numStars" type="text" value="1000" /></td>
            <td><label for="autoIncrement">Auto-Increment</label><input id="autoIncrement" type="checkbox" checked="checked" /></td>
         </tr>
         <tr>
-            <td><label for="reset"></label><input id="reset" type="button" value="Reset" /></td>
+            <td><label for="increment">Increment?</label><input id="increment" type="checkbox" checked="checked" /></td>
             <td><label for="incrementBy">Increment By</label><input id="incrementBy" type="text" value="5" /></td>
         </tr>
         <tr>
-            <td colspan="2"><label for="increment">Increment?</label><input id="increment" type="checkbox" checked="checked" /></td>
+            <td colspan="2">
+                <label for="reset"></label><input id="reset" type="button" value="Reset" /></td>
         </tr>
     </table>
     </form>

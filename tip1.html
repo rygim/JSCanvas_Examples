@@ -47,10 +47,11 @@ setInterval(loop, 10);
         <tr id="better-loop" class="hidden">
             <td>Better animation loop<br /> (More optimal)</td>
             <td><pre class="prettyprint">
-var lastDrawTime = new Date().getTime();
+var lastDrawTime = +new Date();
 var drawLoop = function(){
-    var startDrawTime = new Date().getTime(); 
-    update(startDrawTime - lastDrawTime);
+    var startDrawTime = +new Date(); 
+    var elapsedTime = startDrawTime - lastDrawTime;
+    update(elapsedTime);
     lastDrawTime = startDrawTime;
     draw();
     setTimeout(drawLoop, 5);// or requestAnimationFrame(drawLoop)
