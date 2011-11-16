@@ -2,7 +2,7 @@
 @(:header="Tip 4 :  Only draw what you need to do")
 <script type="text/javascript">
         $(document).ready(function(){
-            bindPresentationActions("/tip3Example.html", [], "/tip4Example.html");
+            bindPresentationActions("/tip3Example.html", [showHideAction("#layer")], "/tip4Example.html");
         });
 </script>
 
@@ -14,12 +14,13 @@
 </ul>
 
 
-
-<h3>How do we do layers and perhaps only clear what we need to?</h3>
-<ul>
-        <li>Canvases are transparent by default</li>
-        <li>Using some CSS, we can layer n number of canvases on top of one another.</li>
-        <li>This way, we can draw anything to separate layers and not worry about removing anything from a layer above or below the current canvas ctx</li>
-        <li>There is a little more overhead with n number of 2d canvas contexts</li>
-</ul>
+<span id="layers">
+        <h3>How do we do layers and perhaps only clear what we need to?</h3>
+        <ul>
+                <li>Canvases are transparent by default</li>
+                <li>Using some CSS, we can layer n number of canvases on top of one another.</li>
+                <li>This way, we can draw anything to separate layers and not worry about removing anything from a layer above or below the current canvas ctx</li>
+                <li>There is a little more overhead with n number of 2d canvas contexts</li>
+        </ul>
+</span>
         
