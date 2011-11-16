@@ -2,18 +2,21 @@
 @(:header="Tip 5 :  Know the limitations and advantages of the canvas api")
 <script type="text/javascript">
         $(document).ready(function(){
-            bindPresentationActions("/tip4Example.html", [], "/tip5Example.html");
+            bindPresentationActions("/tip4Example.html", [showHideAction($("#magic-bullet"))], "/tip5Example.html");
         });
 </script>
 
+<h3>Libraries can make things a little bit easier</h3>
+<ul>
+        <li>Impact js - Paid for, but many tools come along with it to create 2d games</li>
+        <li>Easel js - Paradigm: similar to developing flash application</li>
+</ul>
+
+<span id="magic-bullet">
 <h3>Magic bullet to optimizing canvas application</h3>
 <ul>
         <li>Use vector graphics? Use images? Use alpha</li>
         <li>No magic bullet, it takes a little bit of experimentation</li>
 </ul>
+</span>
 
-<h3>Libraries to make things a little bit easier</h3>
-<ul>
-        <li>Impact js - Paid for, but many tools come along with it to create 2d games</li>
-        <li>Easel js - Paradigm: similar to developing flash application</li>
-</ul>
