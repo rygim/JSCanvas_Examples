@@ -9,28 +9,28 @@
     window.onload = function(){
         var ctx = document.getElementById("animation-canvas").getContext("2d");                 
         starfield.init(ctx, false, numStars);
-        var lastFps = 0, 
-            currentFps = 0, 
-            numMillisecondsBetweenFpsUpdate = 1000;
+//        var lastFps = 0, 
+//            currentFps = 0, 
+//            numMillisecondsBetweenFpsUpdate = 1000;
         var lastDrawTime = +new Date();
         var drawLoop = function(){
-            var startDrawTime = new Date().getTime(); 
+            var startDrawTime = +new Date(); 
             var elapsedTime = startDrawTime - lastDrawTime;
             starfield.update(ctx, elapsedTime);
             starfield.draw(ctx);
             lastDrawTime = startDrawTime;
-            ctx.font = "bold 40px Verdana";            
-            ctx.fillStyle = "yellow";
-            ctx.fillText("fps: " + lastFps, 35, 35);
+//            ctx.font = "bold 40px Verdana";            
+//            ctx.fillStyle = "yellow";
+//            ctx.fillText("fps: " + lastFps, 35, 35);
             currentFps++;
             setTimeout(drawLoop, 5);
         };
         drawLoop();
       
-        setInterval(function(){
-            lastFps = Math.round(currentFps * 1000 / numMillisecondsBetweenFpsUpdate);
-            currentFps = 0;
-        }, numMillisecondsBetweenFpsUpdate);
+//        setInterval(function(){
+//            lastFps = Math.round(currentFps * 1000 / numMillisecondsBetweenFpsUpdate);
+//            currentFps = 0;
+//        }, numMillisecondsBetweenFpsUpdate);
     };
     
     var numStars = function(){
