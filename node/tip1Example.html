@@ -33,16 +33,16 @@
 //                 loop();
 
         ////            time normalized update loop
-              var lastDrawTime = new Date().getTime();
-              var drawLoop = function(){
-                  var startDrawTime = new Date().getTime(); 
-                  var elapsedTime = startDrawTime - lastDrawTime;
-                  starfield.update(ctx, elapsedTime);
-                  starfield.draw(ctx);
-                  lastDrawTime = startDrawTime;
-                  setTimeout(drawLoop, 5);
-                };
-                drawLoop();
+//              var lastDrawTime = new Date().getTime();
+//              var drawLoop = function(){
+//                  var startDrawTime = new Date().getTime(); 
+//                  var elapsedTime = startDrawTime - lastDrawTime;
+//                  starfield.update(ctx, elapsedTime);
+//                  starfield.draw(ctx);
+//                  lastDrawTime = startDrawTime;
+//                  setTimeout(drawLoop, 5);
+//                };
+//                drawLoop();
     };
 </script>
 

@@ -60,13 +60,18 @@ var frontPage = function(){
             tossedItems[i].x += tossedItems[i].vx * normalizedTime;
             tossedItems[i].y += tossedItems[i].vy * normalizedTime;
             tossedItems[i].rotation += tossedItems[i].rotationSpeed;
-                
-            if(tossedItems[i].y > ctx.canvas.height){
-                delete tossedItems[i].y;
-                tossedItems[i] = newTossedItem(ctx);
-            }
         }
     };
+    
+    var removeAndChangeTossedItems = function(tossedItems, ctx){
+        for(var i = tossedItems.length; i--; ){
+            if(tossedItems[i].y > ctx.canvas.height){
+                delete tossedItems[i];
+                tossedItems[i] = newTossedItem(ctx);
+            } 
+        }
+    };
+    
     
     var newTossedItem = function(ctx){	
         return {
@@ -88,10 +93,16 @@ var frontPage = function(){
             drawBackground(bgCtx);
             drawTossedItems(tossedItems, ctx);
         },
-        update: function(elapsedTime, ctx, bgCtx, cloudCtx){  
+        update: function(elapsedTime, doInterpolate, ctx, bgCtx, cloudCtx){  
+            if(doInterpolate){
+                this.interpolate(elapsedTime, ctx, bgCtx, cloudCtx);
+            }
+            removeAndChangeTossedItems(tossedItems, ctx);
+        },
+        interpolate: function(elapsedTime, ctx, bgCtx, cloudCtx){
             bgCtx = bgCtx || ctx;
             cloudCtx = cloudCtx || ctx;
-            updateTossedItems(elapsedTime, tossedItems, ctx);
+            updateTossedItems(elapsedTime, tossedItems, ctx);  
         },
         init: function(isIntro, sizeMult, ctx, bgCtx, cloudCtx){
             sizeMultiplier = sizeMult;

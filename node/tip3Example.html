@@ -8,30 +8,38 @@
         
     window.onload = function(){
         var ctx = document.getElementById("animation-canvas").getContext("2d");                 
-        starfield.init(ctx);
+        starfield.init(ctx, false, numStars);
         var lastFps = 0, 
             currentFps = 0, 
             numMillisecondsBetweenFpsUpdate = 1000;
-        var lastDrawTime = new Date().getTime();
+        var lastDrawTime = +new Date();
         var drawLoop = function(){
             var startDrawTime = new Date().getTime(); 
             var elapsedTime = startDrawTime - lastDrawTime;
             starfield.update(ctx, elapsedTime);
-            lastDrawTime = startDrawTime;
             starfield.draw(ctx);
+            lastDrawTime = startDrawTime;
+            ctx.font = "bold 40px Verdana";            
             ctx.fillStyle = "yellow";
-            ctx.fillText("fps: " + lastFps, 15, 15);
-            setTimeout(drawLoop, 5);
+            ctx.fillText("fps: " + lastFps, 35, 35);
             currentFps++;
+            setTimeout(drawLoop, 5);
         };
         drawLoop();
-        
+      
         setInterval(function(){
             lastFps = Math.round(currentFps * 1000 / numMillisecondsBetweenFpsUpdate);
             currentFps = 0;
         }, numMillisecondsBetweenFpsUpdate);
     };
+    
+    var numStars = function(){
+       return +($("#numStars") .val());
+    };
 </script>
 
-<canvas id="animation-canvas" width="700" height="500" />    
+<canvas id="animation-canvas" width="700" height="500"></canvas>    
+<table>
+    <tr><td><label for="numStars">Number of stars</label></td><td><input type="text" id="numStars" value="50" /></td></tr>
 
+</table>

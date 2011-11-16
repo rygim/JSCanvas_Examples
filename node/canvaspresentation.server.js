@@ -3,7 +3,7 @@ var ryanServer = require("./ryanServer.js").ryanServer;
 var port = 7777;
 
 try {
-    ryanServer.listen(port, "192.168.134.140");  
+    ryanServer.listen(port, "192.168.92.130");  
 }
 catch(err) {
     console.log("Error creating server");

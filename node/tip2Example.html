@@ -14,7 +14,8 @@
         var drawLoop = function(){
             var startDrawTime = new Date().getTime(); 
             var elapsedTime = startDrawTime - lastDrawTime;
-            frontPage.update(elapsedTime, ctx);
+            frontPage.update(elapsedTime, false, ctx);
+            frontPage.interpolate(elapsedTime, ctx);
             lastDrawTime = startDrawTime;
             frontPage.draw($("#animation-canvas"), ctx);
             setTimeout(drawLoop, 5);

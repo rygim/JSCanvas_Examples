@@ -7,7 +7,8 @@
     });
         
     window.onload = function(){
-        var ctx = document.getElementById("animation-canvas").getContext("2d");                 
+        var ctx = document.getElementById("animation-canvas").getContext("2d");   
+        var bgCtx = document.getElementById("bg-canvas").getContext("2d");
         frontPage.init(false, .5, ctx);
         var lastFps = 0, 
             currentFps = 0, 
@@ -16,7 +17,7 @@
         var drawLoop = function(){
             var startDrawTime = new Date().getTime(); 
             var elapsedTime = startDrawTime - lastDrawTime;
-            frontPage.update(elapsedTime, ctx);
+            frontPage.update(elapsedTime, true, ctx, bgCtx);
             lastDrawTime = startDrawTime;
             frontPage.draw($("#animation-canvas"), ctx);
             ctx.fillStyle = "yellow";
@@ -32,5 +33,6 @@
         }, numMillisecondsBetweenFpsUpdate);
     };
 </script>
-<canvas id="animation-canvas" width="700" height="500" />    
+<canvas id="animation-canvas" width="700" height="500" /> 
+<canvas id="bg-canvas" width="700" height="500" />
 
