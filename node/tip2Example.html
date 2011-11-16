@@ -10,12 +10,18 @@
         var ctx = document.getElementById("animation-canvas").getContext("2d");                 
         frontPage.init(false, .5, ctx);
 
-        var lastDrawTime = new Date().getTime();
+        var lastDrawTime = +new Date();
+//        var lastUpdateTime = lastDrawTime;
         var drawLoop = function(){
-            var startDrawTime = new Date().getTime(); 
+            var startDrawTime = +new Date(); 
             var elapsedTime = startDrawTime - lastDrawTime;
-            frontPage.update(elapsedTime, false, ctx);
-            frontPage.interpolate(elapsedTime, ctx);
+            frontPage.update(elapsedTime, true, ctx);
+//            if(lastUpdateTime > 200){
+//                lastUpdateTime = startDrawTime;
+//                frontPage.update(elapsedTime, false, ctx);
+//            }          
+//            frontPage.interpolate(elapsedTime, ctx);
+            
             lastDrawTime = startDrawTime;
             frontPage.draw($("#animation-canvas"), ctx);
             setTimeout(drawLoop, 5);
