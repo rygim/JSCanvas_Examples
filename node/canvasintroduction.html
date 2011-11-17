@@ -2,7 +2,11 @@
 @(:header="Quick Canvas Introduction")
 <script type="text/javascript">
     $(document).ready(function(){
-        bindPresentationActions("/introduction.html", [], "/tip1.html");
+        bindPresentationActions("/introduction.html", [showHideAction($("#example1")), 
+            showHideAction($("#example2")), 
+            showHideAction($("#example3")),
+            showHideAction($("#example4")),
+            showHideAction($("#no-demo"))], "/tip1.html");
     });
     
     var img = new Image();
@@ -53,7 +57,7 @@
 <h3>Interacting with the canvas: </h3>
 
 <table>
-    <tr>
+    <tr id="example1" class="hidden">
         <td>
             <pre class="prettyprint">ctx.drawImage(imageObj, x, y)</pre>
         </td>
@@ -61,7 +65,7 @@
             <canvas id="draw-image-canvas" width="200" height="200" />
         </td>
     </tr>
-    <tr>
+    <tr id="example2" class="hidden">
         <td>
             <pre class="prettyprint">ctx.fillText(text, x, y)</pre>
         </td>
@@ -69,7 +73,7 @@
             <canvas id="fill-text-canvas" width="200" height="200" />
         </td>
     </tr>
-    <tr>
+    <tr id="example3" class="hidden">
         <td>
             <pre class="prettyprint">ctx.arc(x, y, radius, startRadians, endRadians, isAnticlockwise)</pre>
         </td>
@@ -77,7 +81,7 @@
             <canvas id="draw-arc-canvas" width="200" height="200" />
         </td>
     </tr>
-    <tr>
+    <tr id="example4" class="hidden">
         <td>
             <pre class="prettyprint">ctx.fillRectangle(x, y, width, height)</pre>
         </td>
@@ -87,15 +91,17 @@
     </tr> 
 </table>    
 
-<h3>Way more interesting,  less demo-able methods</h3>
-<ul>
-    <li>
+<span id="no-demo" class="hidden">
+    <h3>Way more interesting,  less demo-able methods</h3>
+    <ul>
+        <li>
             <pre class="prettyprint">ctx.getImageData(x, y, width, height)</pre>
-    </li>
-    <li>
+        </li>
+        <li>
             <pre class="prettyprint">ctx.toDataUrl()</pre>
-    </li>
-</ul>
+        </li>
+    </ul>
+</span>
 
 
 

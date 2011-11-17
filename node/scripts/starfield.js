@@ -149,6 +149,9 @@ var starfield = function(){
             numStarsFn =  _numStarsFn || numStarsFn;
             showChart = _showChart;
             chartData = [[],[],[],[]];
+        },
+        numStars: function(){
+            return stars.length;
         }
     };
 }();

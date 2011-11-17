@@ -2,7 +2,7 @@
 @(:header="Tip 4 :  Only draw what you need to do")
 <script type="text/javascript">
         $(document).ready(function(){
-            bindPresentationActions("/tip3Example.html", [showHideAction("#layer")], "/tip4Example.html");
+            bindPresentationActions("/tip3Example.html", [showHideAction($("#layers"))], "/tip4Example.html");
         });
 </script>
 
@@ -14,7 +14,7 @@
 </ul>
 
 
-<span id="layers">
+<span id="layers" class="hidden">
         <h3>How do we do layers and perhaps only clear what we need to?</h3>
         <ul>
                 <li>Canvases are transparent by default</li>

@@ -1,58 +1,60 @@
 @(:title="Tip 1")
 @(:header="Tip 1 :  Code for your target audience")
 <script type="text/javascript">
-        $(document).ready(function(){
-            bindPresentationActions("/canvasintroduction.html", [showHideAction("#browser-speed"), 
-                                                                showHideAction("#animation-loop"),
-                                                                showHideAction("#better-loop")], "/tip1Example.html");
-        });
+    $(document).ready(function(){
+        bindPresentationActions("/canvasintroduction.html", [showHideAction($("#browser-speed")), 
+            showHideAction($("#animation-loop")),
+            showHideAction($("#better-loop"))], "/tip1Example.html");
+    });
 </script>
 
 <h3>Decide what your target audience/environment hardware.</h3>
 
 <h4>Adoption: (cite wikipedia)</h4>
 <ul>
-        <li>The common engines support drawing to the canvas</li>
-        <li>Trident - since IE9, Gecko - Chrome, Webkit - Mozilla, Presto - Opera</li>
-        <li>No one wants to implement ctx.drawSystemFocusRing, so technically no one fully supports it</li>
+    <li>The common engines support drawing to the canvas</li>
+    <li>Trident - since IE9, Gecko - Chrome, Webkit - Mozilla, Presto - Opera</li>
+    <li>No one wants to implement ctx.drawSystemFocusRing, so technically no one fully supports it</li>
 </ul>
 
-<span id="browser-speed">
-<h4>You will deal with fast and slow browsers: normalize your time</h4>
-<div>The environment that the application can execute at any speed</div>
-<div>Javascript is single threaded</div>
-<h5>Your Game loop:</h5>
-<table><tr>
-        <td>Simple animation loop<br /> (Don't do this)</td>
-        <td><pre class="prettyprint">
+<span id="browser-speed" class="hidden">
+    <h4>You will deal with fast and slow browsers: normalize your time</h4>
+    <div>The environment that the application can execute at any speed</div>
+    <div>Javascript is single threaded</div>
+    <h5>Your Game loop:</h5>
+    <table><tr>
+            <td>Simple animation loop<br /> (Don't do this)</td>
+            <td><pre class="prettyprint">
 while(true){
     update();
     draw();
 };
-</pre></td></tr>
-    <tr id="animation-loop">
-        <td>Actual animation loop<br /> (OK)</td>
-        <td><pre class="prettyprint">
+                </pre></td></tr>
+        <tr id="animation-loop" class="hidden">
+            <td>Actual animation loop<br /> (OK)</td>
+            <td><pre class="prettyprint">
 var loop = function(){
     update();
     draw();
 };
 setInterval(loop, 10);
-</pre></td></tr>
-    <tr id="better-loop">
-        <td>Better animation loop<br /> (More optimal)</td>
-        <td><pre class="prettyprint">
+                </pre></td></tr>
+        <tr id="better-loop" class="hidden">
+            <td>Better animation loop<br /> (More optimal)</td>
+            <td><pre class="prettyprint">
 var lastDrawTime = new Date().getTime();
 var drawLoop = function(){
     var startDrawTime = new Date().getTime(); 
     update(startDrawTime - lastDrawTime);
     lastDrawTime = startDrawTime;
     draw();
-    setTimeout(drawLoop, 5);// or requestAnimationFrame(drawLoop) if you want to 
-                            // be slick.  It is still in beta for all browsers and 
+    setTimeout(drawLoop, 5);// or requestAnimationFrame(drawLoop)
+                            // if you want to 
+                            // be slick.  It is still 
+                            // in beta for all browsers and 
                             // not part of canvas API
 };
 drawLoop();
-</pre></td></tr>
-</table>    
+                </pre></td></tr>
+    </table>    
 </span>

@@ -2,40 +2,38 @@
 @(:header="Tip 3 :  A profiler is a good starting point to performance, consider other heuristics though")
 
 <script type="text/javascript">
-        $(document).ready(function(){
-            bindPresentationActions("/tip2Example.html", [showHideAction($("#fps"))], "/tip3Example.html");
-        });
+    $(document).ready(function(){
+        bindPresentationActions("/tip2Example.html", [showHideAction($("#leak")), showHideAction($("#fps"))], "/tip3Example.html");
+    });
 </script>
 
 <h4>Memory</h4>
 <ul>
-        <li>Javascript was written for a memory agnostic environment </li>
-        <li>Javascript has it's own garbage collector</li>
-        <li>two guidelines from the apple developer site:
-                <ol>
-                        <li>use the delete keyword to free unused memory</li>
-                        <li>use the var keyword</li>
-                </ol>
-        </li>
-        <li>Be wary of closures as they may contain hidden memory leaks</li>
+    <li>Javascript was written for a memory agnostic environment </li>
+    <li>Javascript has it's own garbage collector</li>
+    <li>two guidelines from the apple developer site:
+        <ol>
+            <li>use the delete keyword to free unused memory</li>
+            <li>use the var keyword</li>
+        </ol>
+    </li>
+    <li>Be wary of closures as they may contain hidden memory leaks</li>
 </ul>
-
-<h5>Painfully simple javascript closure memory leak</h5>
-<pre class="code">var closure = function(){
+<span id="leak" class="hidden">
+    <h5>Painfully simple javascript closure memory leak</h5>
+    <pre class="code">var closure = function(){
         var leakyArr = [];
         
         setInterval(function(){
                 leakyArr.push(1);
         }, 100);
-        
-        return undefined;
 }();
-</pre>
-
-<span id="fps">
-        <h4>Frames per second</h4>
-        <ul>
-                <li>Frames per second is a good way to judge the responsiveness of your app</li>
-                <li>Make sure to stress your application to see where the minimum number of frames per second are in the application</li>
-        </ul>
+    </pre>
+</span>
+<span id="fps" class="hidden">
+    <h4>Frames per second</h4>
+    <ul>
+        <li>Frames per second is a good way to judge the responsiveness of your app</li>
+        <li>Make sure to stress your application to see where the minimum number of frames per second are in the application</li>
+    </ul>
 </span>

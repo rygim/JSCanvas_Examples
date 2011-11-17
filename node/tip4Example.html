@@ -9,30 +9,46 @@
     window.onload = function(){
         var ctx = document.getElementById("animation-canvas").getContext("2d");   
         var bgCtx = document.getElementById("bg-canvas").getContext("2d");
+        drawBg(bgCtx);
         frontPage.init(false, .5, ctx);
-        var lastFps = 0, 
-            currentFps = 0, 
-            numMillisecondsBetweenFpsUpdate = 1000;
-        var lastDrawTime = new Date().getTime();
-        var drawLoop = function(){
-            var startDrawTime = new Date().getTime(); 
-            var elapsedTime = startDrawTime - lastDrawTime;
-            frontPage.update(elapsedTime, true, ctx, bgCtx);
-            lastDrawTime = startDrawTime;
-            frontPage.draw($("#animation-canvas"), ctx);
-            ctx.fillStyle = "yellow";
-            ctx.fillText("fps: " + lastFps, 15, 15);
-            setTimeout(drawLoop, 5);
-            currentFps++;
-        };
-        drawLoop();
-        
-        setInterval(function(){
-            lastFps = Math.round(currentFps * 1000 / numMillisecondsBetweenFpsUpdate);
-            currentFps = 0;
-        }, numMillisecondsBetweenFpsUpdate);
+        //frontPage.drawBackground(bgCtx);
+        //        var lastFps = 0, 
+        //            currentFps = 0, 
+        //            numMillisecondsBetweenFpsUpdate = 1000;
+        //        var lastDrawTime = +new Date();
+        //        var drawLoop = function(){
+        //            var startDrawTime = +new Date(); 
+        //            var elapsedTime = startDrawTime - lastDrawTime;
+        //            frontPage.update(elapsedTime, true, ctx);
+        //            lastDrawTime = startDrawTime;
+        //            frontPage.draw($("#animation-canvas"), ctx, bgCtx);
+        //            ctx.fillStyle = "yellow";
+        //            ctx.fillText("fps: " + lastFps, 15, 15);
+        //            setTimeout(drawLoop, 5);
+        //            currentFps++;
+        //        };
+        //        drawLoop();
+        //        
+        //        setInterval(function(){
+        //            lastFps = Math.round(currentFps * 1000 / numMillisecondsBetweenFpsUpdate);
+        //            currentFps = 0;
+        //        }, numMillisecondsBetweenFpsUpdate);
+
     };
+    
+
+        var drawBg = function(ctx){
+            var cg = ctx.createLinearGradient(0, 0, 0, ctx.canvas.height);
+            cg.addColorStop(0, '#00BFFF');
+            cg.addColorStop(0.7,'#00BFFF');
+            cg.addColorStop(0.9, 'white');
+            cg.addColorStop(0.9, '#55dd00');
+            cg.addColorStop(1, 'white');
+            ctx.fillStyle = cg;
+            ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);      
+            console.log("hey!");
+        };    
 </script>
-<canvas id="animation-canvas" width="700" height="500" /> 
-<canvas id="bg-canvas" width="700" height="500" />
+<canvas id="animation-canvas" width="700" height="500" style="position:absolute; top: 120px; left: 75px;" /> 
+<canvas id="bg-canvas" width="700" height="500" style="position:absolute; top: 120px; left: 75px;"/>
 

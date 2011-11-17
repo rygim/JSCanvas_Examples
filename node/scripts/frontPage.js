@@ -7,7 +7,7 @@ var frontPage = function(){
                 images.push(newImg);
         }
     
-    var drawBackground = function(ctx){
+    var drawBg = function(ctx){
         var cg = ctx.createLinearGradient(0, 0, 0, ctx.canvas.height);
         cg.addColorStop(0, '#00BFFF');
         cg.addColorStop(0.7,'#00BFFF');
@@ -15,7 +15,8 @@ var frontPage = function(){
         cg.addColorStop(0.9, '#55dd00');
         cg.addColorStop(1, 'white');
         ctx.fillStyle = cg;
-        ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);       
+        ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);      
+        console.log("hey!");
     };
     
     var height = 0, width = 0;
@@ -86,11 +87,12 @@ var frontPage = function(){
     };
 
     return {
-        draw: function($canvas, ctx, bgCtx, cloudCtx){
-            bgCtx = bgCtx || ctx;
-            cloudCtx = cloudCtx || ctx;
+        draw: function($canvas, ctx, bgCtx){
             setCanvasToPageWidth($canvas, sizeMultiplier);
-            drawBackground(bgCtx);
+            if(bgCtx === undefined){
+                drawBg(ctx);    
+            }
+            
             drawTossedItems(tossedItems, ctx);
         },
         update: function(elapsedTime, doInterpolate, ctx, bgCtx, cloudCtx){  
@@ -104,13 +106,16 @@ var frontPage = function(){
             cloudCtx = cloudCtx || ctx;
             updateTossedItems(elapsedTime, tossedItems, ctx);  
         },
-        init: function(isIntro, sizeMult, ctx, bgCtx, cloudCtx){
+        init: function(isIntro, sizeMult, ctx){
             sizeMultiplier = sizeMult;
             ay = sizeMultiplier * 50;
             drawIntroText = isIntro;
             for(var i = numTossedItems; i--; ){
                 tossedItems.push(newTossedItem(ctx));	
             }
+        },
+        drawBackground: function(ctx){  
+            drawBg(ctx);
         }
     };
 }();
