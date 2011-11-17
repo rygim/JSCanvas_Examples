@@ -46,7 +46,7 @@
         if($("#autoIncrement").is(':checked')){
             var val = +($("#incrementBy") .val());
             if($("#increment").is(':checked')){
-                $("#numStars").val(Math.min(numStars() + val, 700));    
+                $("#numStars").val(numStars() + val);    
             }
             else{
                 $("#numStars").val(Math.max(numStars() - val, 0));        

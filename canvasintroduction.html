@@ -30,6 +30,7 @@
         drawImageCtx.drawImage(img, 0, 0, img.width, img.height);
         
         var fillTextCtx = $("#fill-text-canvas")[0].getContext("2d");
+        fillTextCtx.font = "20pt Calibri bold";
         for(var i = 0; i < numText; i++){
             fillTextCtx.fillStyle = randomColor();
             fillTextCtx.fillText("Hello World", Math.random() * fillTextCtx.canvas.width, Math.random() * fillTextCtx.canvas.height);    
@@ -70,7 +71,7 @@
             <pre class="prettyprint">ctx.fillText(text, x, y)</pre>
         </td>
         <td>
-            <canvas id="fill-text-canvas" width="200" height="200" />
+            <canvas id="fill-text-canvas" width="600" height="200" />
         </td>
     </tr>
     <tr id="example3" class="hidden">
@@ -89,9 +90,7 @@
             <canvas id="fill-rectangle-canvas" width="200" height="200" />
         </td>
     </tr> 
-</table>    
-
-<span id="no-demo" class="hidden">
+    <tr  id="no-demo" class="hidden"><td>
     <h3>Way more interesting,  less demo-able methods</h3>
     <ul>
         <li>
@@ -101,7 +100,9 @@
             <pre class="prettyprint">ctx.toDataUrl()</pre>
         </li>
     </ul>
-</span>
-
+    </td>
+    <td></td>
+</tr>
+</table>    
 
 

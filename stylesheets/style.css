@@ -11,6 +11,10 @@ h2, h3, h4, h5{
     padding: 0px;
 }
 
+h4{
+    padding-left: 20px;
+}
+
 #main-content{
     margin: 5px;
     padding: 5px;
@@ -45,4 +49,8 @@ h2, h3, h4, h5{
 
 .hidden{
     display: none;
+}
+
+.bold{
+    font-weight: bolder;
 }

@@ -130,7 +130,7 @@ var starfield = function(){
             if(showChart){
                 var index = (useAlpha ? 1 : 0) + (useImage ? 2 : 0);
                 var end = +new Date();
-                starfieldGraph.addChartData(index, currentNumberOfStars, end - start);
+                starfieldGraph.addChartData(index, stars.length, end - start);
                 starfieldGraph.draw(ctx);
                 start = end;
                 

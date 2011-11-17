@@ -1,11 +1,22 @@
 var frontPage = function(){        
-    var tossedItems = [], sizeMultiplier = 1, numTossedItems = 10, images = [],  drawIntroText = false, ay = 50,
-          imageSrc = ["/images/chris_dagostino.png", "/images/nic-logo.png"];
-        for(var i = imageSrc.length; i--; ){
-                var newImg = new Image();
-                newImg.src = imageSrc[i];
-                images.push(newImg);
-        }
+    var tossedItems = [], sizeMultiplier = 1, numTossedItems = 20, images = [],  drawIntroText = false, ay = 50,
+    imageSrc = ["/images/chris_dagostino.png", 
+        "/images/nic-logo.png", 
+        "/images/jeff_borst.png",
+        "/images/scott_leberknight.png",
+        "/images/chris_rohr.png",
+        "/images/dave_singley.png"];
+    for(var i = imageSrc.length; i--; ){
+        var newImg = new Image();
+        newImg.src = imageSrc[i];
+        images.push(newImg);
+    }
+        
+    var expensiveFunction = function(){
+        for(var i = 100; i--;){ 
+            console.log("");
+        } 
+    };
     
     var drawBg = function(ctx){
         var cg = ctx.createLinearGradient(0, 0, 0, ctx.canvas.height);
@@ -15,15 +26,14 @@ var frontPage = function(){
         cg.addColorStop(0.9, '#55dd00');
         cg.addColorStop(1, 'white');
         ctx.fillStyle = cg;
-        ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);      
-        console.log("hey!");
+        ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);     
     };
     
     var height = 0, width = 0;
     
     var setCanvasToPageWidth = function($canvas, sizeMult){
         var canvasHeight = window.innerHeight * sizeMult,
-              canvasWidth = window.innerWidth * sizeMult;
+        canvasWidth = window.innerWidth * sizeMult;
         if(height !== canvasHeight || width !== canvasWidth){
             $canvas.attr("height", window.innerHeight * sizeMult);
             $canvas.attr("width", window.innerWidth * sizeMult);
@@ -42,16 +52,20 @@ var frontPage = function(){
         }
         
         if (drawIntroText){
-            ctx.fillStyle = "white";
+            ctx.fillStyle = "yellow";
             ctx.font = "40pt Calibri bold";
             var text = "5 Tips for Optimizing Canvas Applications",
-                  subtitleText = "-Ryan Gimmy",
-                  titleWidth = ctx.canvas.width - ctx.measureText(text).width,
-                  subtitleWidth = ctx.canvas.width - ctx.measureText(subtitleText).width;
+            subtitleText = "-Ryan Gimmy",
+            titleWidth = ctx.canvas.width - ctx.measureText(text).width,
+            subtitleWidth = ctx.canvas.width - ctx.measureText(subtitleText).width;
             ctx.fillText(text, titleWidth / 2, ctx.canvas.height / 2);
             ctx.font = "35pt Calibri";
             ctx.fillText(subtitleText, 3 * subtitleWidth / 4, ctx.canvas.height / 2 + 50);
         }
+    };
+    
+    var eraseTossedItems = function(tossedItems, ctx){
+        ctx.clearRect(0,0, ctx.canvas.width, ctx.canvas.height);
     };
     
     var updateTossedItems = function(elapsedTime, tossedItems, ctx){
@@ -87,19 +101,23 @@ var frontPage = function(){
     };
 
     return {
-        draw: function($canvas, ctx, bgCtx){
-            setCanvasToPageWidth($canvas, sizeMultiplier);
-            if(bgCtx === undefined){
-                drawBg(ctx);    
-            }
-            
+        drawWithLongBackground: function($canvas, ctx){
+            expensiveFunction();
+            this.draw($canvas, ctx);
+        },
+        drawNoBackground: function(ctx){
             drawTossedItems(tossedItems, ctx);
         },
-        update: function(elapsedTime, doInterpolate, ctx, bgCtx, cloudCtx){  
-            if(doInterpolate){
-                this.interpolate(elapsedTime, ctx, bgCtx, cloudCtx);
-            }
+        draw: function($canvas, ctx){
+            drawBg(ctx);    
+            this.drawNoBackground(ctx); 
+        },
+        updateNoInterpolation: function(ctx){  
             removeAndChangeTossedItems(tossedItems, ctx);
+        },
+        update: function(elapsedTime, ctx, bgCtx, cloudCtx){
+            this.interpolate(elapsedTime, ctx, bgCtx, cloudCtx);
+            this.updateNoInterpolation(ctx);
         },
         interpolate: function(elapsedTime, ctx, bgCtx, cloudCtx){
             bgCtx = bgCtx || ctx;
@@ -114,8 +132,21 @@ var frontPage = function(){
                 tossedItems.push(newTossedItem(ctx));	
             }
         },
-        drawBackground: function(ctx){  
-            drawBg(ctx);
+        longDrawBackground: function(ctx){ 
+            expensiveFunction();
+            drawBg(ctx, true);
+        },
+        longUpdateWithInterpolation: function(elapsedTime, ctx, bgCtx, cloudCtx){
+            expensiveFunction();
+            this.update(elapsedTime, ctx, bgCtx, cloudCtx);
+        },
+        longUpdateNoInterpolation: function(elapsedTime, ctx, bgCtx, cloudCtx){
+            expensiveFunction();
+            this.updateNoInterpolation(ctx);
+        },
+        drawNoBackgroundWithErasing: function(ctx){
+            eraseTossedItems(tossedItems, ctx);
+            this.drawNoBackground(ctx);
         }
     };
 }();

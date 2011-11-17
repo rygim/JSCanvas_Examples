@@ -7,23 +7,28 @@
     });
         
     window.onload = function(){
-        var ctx = document.getElementById("animation-canvas").getContext("2d");                 
+        var $canvas = $("#animation-canvas"),
+            ctx = $canvas[0].getContext("2d");                 
+            
         frontPage.init(false, .5, ctx);
 
-        var lastDrawTime = +new Date();
-//        var lastUpdateTime = lastDrawTime;
+        var lastUpdateTime = +new Date(),
+            lastLoopTime = +new Date();
+
         var drawLoop = function(){
             var startDrawTime = +new Date(); 
-            var elapsedTime = startDrawTime - lastDrawTime;
-            frontPage.update(elapsedTime, true, ctx);
-//            if(lastUpdateTime > 200){
+            var elapsedTime = startDrawTime - lastLoopTime;
+            frontPage.longUpdateWithInterpolation(elapsedTime, ctx);
+            
+//            if(startDrawTime - lastUpdateTime > 1000){
 //                lastUpdateTime = startDrawTime;
-//                frontPage.update(elapsedTime, false, ctx);
+//                frontPage.longUpdateNoInterpolation(elapsedTime, ctx);
 //            }          
+//            
 //            frontPage.interpolate(elapsedTime, ctx);
             
-            lastDrawTime = startDrawTime;
-            frontPage.draw($("#animation-canvas"), ctx);
+            frontPage.draw($canvas, ctx);
+            lastLoopTime = startDrawTime;
             setTimeout(drawLoop, 5);
         };
         drawLoop();

@@ -5,7 +5,7 @@ var starfieldGraph = function(){
         maxNumStars = 0,
         colorData = ["red", "yellow", "green", "orange"];
     
-    var drawChart = function(ctx, chartDataLine, color){
+    var drawChart = function(ctx, chartDataLine, color, textY){
         var isMoved = false, 
             xPixelOffset = ctx.canvas.width / maxNumStars, 
             yPixelOffset = ctx.canvas.height / maxTime;
@@ -14,38 +14,30 @@ var starfieldGraph = function(){
         ctx.lineWidth = 5;
         ctx.beginPath();
         ctx.font = "20px Verdana";            
-        ctx.fillStyle = "yellow";
-        var showData = 0, text = "", textX = 0, textY = 0;
+        ctx.fillStyle = color;
         for(var i = chartDataLine.length; i--;){
             var data = chartDataLine[i];
             if(data === undefined){
                 continue;
             }
-            showData++;
                         
             var x = i * xPixelOffset,
                 y = ctx.canvas.height - data * yPixelOffset;
 
             if(!isMoved){
                ctx.moveTo(x, y);
+               ctx.fillText("max stars: " + i + ", time: " + chartDataLine[i] + " ms", 15, textY);
             }
             else{
                 ctx.lineTo(x, y);
             }
-            
-            if(showData === 10){
-                text = "stars: " + i + ", time: " + chartDataLine[i] + " ms";
-                var dimensions = ctx.measureText(text);
-                textX = Math.min(x, ctx.canvas.width - dimensions.width);
-                textY = y - 30;
-            }  
             
             isMoved = true;
         }
         ctx.stroke();
         
 
-        ctx.fillText(text, textX, textY);
+        
     };
     
     return {
@@ -66,7 +58,7 @@ var starfieldGraph = function(){
       },
       draw: function(ctx){
         for(var i = chartData.length; i--;){
-            drawChart(ctx, chartData[i], colorData[i]);
+            drawChart(ctx, chartData[i], colorData[i], i * 25 + 50);
         }
       }  
     };

@@ -43,8 +43,6 @@ parser = require("./ryanParser.js").ryanParser;
             serveFileContent(response, content, contentType);
             return;
         }
-        
-        console.log(contentType + " - " + filename);
     
         path.exists(layoutPath, function(exists){
             if(!exists){

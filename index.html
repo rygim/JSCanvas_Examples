@@ -3,13 +3,16 @@
 <script type="text/javascript">
     $(document).ready(function(){
         var $canvas = $("#front-page-canvas"),
-                ctx = $canvas[0].getContext("2d");
+        ctx = $canvas[0].getContext("2d");
 
         frontPage.init(true, 1, ctx);
         
         setInterval(function(){
-            frontPage.update(1, true, ctx);
+            $canvas.attr("height", window.innerHeight);
+            $canvas.attr("width", window.innerWidth);
+            frontPage.update(1, ctx);
             frontPage.draw($canvas, ctx);
+            
         }, 300);
     });
        
